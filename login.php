@@ -23,7 +23,6 @@ if (isset($_POST['account']) && isset($_POST['password'])){
 	$stmt = $conn->prepare($sql);
 	$stmt->bind_param('ss',$account,$password);
 	$stmt->execute();
-	$user_name = "default";
 	$stmt->bind_result($user_name);
 	
 	if($stmt->fetch()){
@@ -44,8 +43,14 @@ if (isset($_POST['account']) && isset($_POST['password'])){
 		$stmt->close();
 		
 		//redirect to main_page
-		header("Location: /DBFinalProject/index.php");
-		die();
+		if(isset($_SESSION['last view board'])&&isset($_SESSION['last view page'])){
+			header("Location: /DBFinalProject/board.php?board_name=".$_SESSION['last view board']."&page=".$_SESSION['last view page']);
+			die();
+		}
+		else{
+			header("Location: /DBFinalProject/index.php");
+			die();
+		}
 	}
 	else{
 		header("Location: /DBFinalProject/login_page.php?err_msg=login_fail");
