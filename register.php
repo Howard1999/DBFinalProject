@@ -17,13 +17,11 @@
 		die("Connection failed: " . $conn->connect_error);
 	}
 	
-	$username=$_POST['username'];
+	$user_name=$_POST['user_name'];
 	$account=$_POST['account'];
 	$password=$_POST['password'];
 	
 	$message = "你輸入的資訊為:\\n使用者名稱:$username\\n帳號:$account\\n密碼:$password , 即將導向登入頁面";
     echo "<script type='text/javascript'>alert('$message');</script>";
-	mysql_query("insert into Register values('$username','$account','$password')");
-
-	//done
+	mysql_query("insert into user values('$user_name','$account','$password')");
 ?>
