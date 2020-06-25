@@ -5,9 +5,10 @@
 </head>
 <body>
 <?php
-	$severname = "127.0.0.1";
-	$username = "team1";
-	$passwordd = "DB338HKkvRVOZzb";
+	session_start();
+	$servername = "localhost";
+	$username = "root";
+	$passwordd = "eb87oU7BGKxqxgSR";
 	$dbname = "team1";
 	
 	$conn = new mysqli($servername,$username,$passwordd,$dbname);
@@ -17,34 +18,34 @@
 		printf("Error loading character set utf8: %s\n",$conn->error);
 		exit();
 	}
-	
-	if($conn->connect_error)
+	if(mysqli_connect_errno($conn))
 	{
-		die("Connection failed: " . $conn->connect_error);
+		printf("Connect failed: %s\n",mysqli_connect_error());
+		exit();
 	}
+	mysqli_select_db($conn,"user");
+	
 	$user_name=$_POST['user_name'];
 	$account=$_POST['account'];
 	$password=$_POST['password'];
-	mysql_select_db("user",$conn);
 	
 	$in_user_name =null;
 	$in_account = null;
 	$in_password = null;
-	$result= mysql_query("select * from user where user_name ='{$user_name}'");
-	while($row = mysql_fetch_array($result))
+	$sql="SELECT user_name from `user`";
+	$result= mysqli_query($conn,$sql);
+	
+	while($row = mysqli_fetch_array($result,MYSQLI_NUM))
 	{
-		$in_user_name =$row["user_name"];
-		$in_account = $row["account"];
-		$in_password = $row["password"];
-		if(is_null($in_user_name)==0)
+		if($row[0]==$user_name)
 		{
-            		echo "<script type='text/javascript'>alert('使用者名稱已有人註冊');</script>";
+            echo "<script type='text/javascript'>alert('使用者名稱已有人註冊');</script>";
 			header("Location: /DBFinalProject/register_page.php");
 			die();
 		}
 	}
-	mysql_query("insert into user values('$user_name','$account','$password','C',NULL,NULL,NULL,NULL,NULL,NULL)");
-	mysql_close($conn);
+	mysqli_query($conn,"INSERT INTO `user`(`user_name`, `account`, `password`, `user_authority`, `last_login_time`, `board_name`, `login_ip`, `last_login_ip`, `session_id`) VALUES ('$user_name', '$account', '$password', 'C', NULL, NULL, '', '', '')");
+	mysqli_close($conn);
 	echo "<script type='text/javascript'>alert('註冊成功');</script>";
 	header("Location: /DBFinalProject/login_page.php");
 	die();
