@@ -20,7 +20,6 @@
 	$user_name=$_POST['user_name'];
 	$account=$_POST['account'];
 	$password=$_POST['password'];
-	
-	$message = "你輸入的資訊為:\\n使用者名稱:$username\\n帳號:$account\\n密碼:$password , 即將導向登入頁面";
+
 	mysql_query("insert into user values('$user_name','$account','$password')");
 ?>
