@@ -38,14 +38,14 @@
 		$in_password = $row["password"];
 		if(is_null($in_user_name)==0)
 		{
-            		echo "<script type='text/javascript'>alert('使用者名稱已有人註冊');</script>"
+            		echo "<script type='text/javascript'>alert('使用者名稱已有人註冊');</script>";
 			header("Location: /DBFinalProject/register_page.php");
 			die();
 		}
 	}
 	mysql_query("insert into user values('$user_name','$account','$password','C',NULL,NULL,NULL,NULL,NULL,NULL)");
 	mysql_close($conn);
-	echo "<script type='text/javascript'>alert('註冊成功');</script>"
+	echo "<script type='text/javascript'>alert('註冊成功');</script>";
 	header("Location: /DBFinalProject/login_page.php");
 	die();
 ?>
