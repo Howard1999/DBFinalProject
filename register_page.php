@@ -7,7 +7,7 @@
 	<table border="1">
 　	<tr>
 　	<td>使用者名稱</td>
-	<td><input type="text" placeholder="user name" name="username"/></td>
+	<td><input type="text" placeholder="user_name" name="user_name"/></td>
 	</tr>
 	<tr>
 	<td>帳號</td>
@@ -20,9 +20,7 @@
 	</table>
 	<input type ="button" value="submit"></input>
 	<!--<input type ="button" onclick="javascript:location.href='http://www.wibibi.com'" value="回到 Wibibi 首頁"></input>-->
-	
 	</form>
-	
 </body>
 </html>
 
