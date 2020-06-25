@@ -43,7 +43,7 @@
 ?>
 		<script type="text/javascript">
                 alert("使用者已存在");
-				window.location.href="register.html";
+		window.location.href="register_page.html";
 		</script>
 <?php
 	}
@@ -52,7 +52,7 @@
 ?>
 <script type="text/javascript">
 alert("註冊成功");
-window.location.href="login_page.html";
+window.location.href="login_page.php";
 </script> 
 </body> 
 </html> 
