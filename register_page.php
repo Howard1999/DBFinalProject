@@ -18,8 +18,7 @@
 	<td><input type="text" placeholder="password" name="password"/></td>
 	</tr>
 	</table>
-	<input type ="button" value="submit"></input>
-	<!--<input type ="button" onclick="javascript:location.href='http://www.wibibi.com'" value="回到 Wibibi 首頁"></input>-->
+	<input id="submit_button" type="submit">
 	</form>
 </body>
 </html>
