@@ -5,7 +5,7 @@
 <title> 註冊系統 </title>
 </head>
 <body>
-	<form method="post" action="register.php" >
+	<form action="register.php" method="post">
 	<table border="1">
 　	<tr>
 　	<td>使用者名稱</td>
