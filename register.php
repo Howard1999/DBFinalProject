@@ -22,4 +22,6 @@
 	$password=$_POST['password'];
 
 	mysql_query("insert into user values('$user_name','$account','$password')");
+	header("Location: /DBFinalProject/login_page.php");
+	die();
 ?>
