@@ -5,7 +5,6 @@
 </head>
 <body>
 <?php
-	session_start();
 	$severname = "127.0.0.1";
 	$username = "team1";
 	$passwordd = "DB338HKkvRVOZzb";
@@ -23,11 +22,11 @@
 	{
 		die("Connection failed: " . $conn->connect_error);
 	}
-	
 	$user_name=$_POST['user_name'];
 	$account=$_POST['account'];
 	$password=$_POST['password'];
 	mysql_select_db("user",$conn);
+	
 	$in_user_name =null;
 	$in_account = null;
 	$in_password = null;
@@ -37,22 +36,18 @@
 		$in_user_name =$row["user_name"];
 		$in_account = $row["account"];
 		$in_password = $row["password"];
+		if(is_null($in_user_name)==0)
+		{
+            		echo "<script type='text/javascript'>alert('使用者名稱已有人註冊');</script>"
+			header("Location: /DBFinalProject/register_page.php");
+			die();
+		}
 	}
-	if(is_null($in_user_name)==0)
-	{
-?>
-		<script type="text/javascript">
-                alert("使用者已存在");
-		window.location.href="register_page.html";
-		</script>
-<?php
-	}
-	mysql_query("insert into user values('$user_name','$account','$password',"C",NULL,NULL,NULL,NULL,NULL,NULL)");
+	mysql_query("insert into user values('$user_name','$account','$password','C',NULL,NULL,NULL,NULL,NULL,NULL)");
 	mysql_close($conn);
+	echo "<script type='text/javascript'>alert('註冊成功');</script>"
+	header("Location: /DBFinalProject/login_page.php");
+	die();
 ?>
-<script type="text/javascript">
-alert("註冊成功");
-window.location.href="login_page.php";
-</script> 
 </body> 
 </html> 
