@@ -1,14 +1,14 @@
 <form action="login.php" method="post">
-	<label id="account_label" for="account">account :</label><br>
+	<label id="account_label" class="account" for="account">account :</label><br>
 	<?php
-		echo "<input id=\"account input\" type=\"text\" name=\"account\" ";
+		echo "<input id=\"account class=\"account\" input\" type=\"text\" name=\"account\" ";
 		if(isset($_GET['account'])){
 			echo "value=".$_GET['account'];
 		}
 		echo "><br>";
 	?>
-	<label id="password_label" for="password">password :</label><br>
-    <input id="password_input"type="password" name="password"><br>
+	<label id="password_label" class="password" for="password">password :</label><br>
+    <input id="password_input" class="password" type="password" name="password"><br>
     <input id="submit_button" type="submit">
 </form>
 <?php

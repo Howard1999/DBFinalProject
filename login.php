@@ -28,17 +28,11 @@ if (isset($_POST['account']) && isset($_POST['password'])){
 	if($stmt->fetch()){
 		$stmt->close();
 		//session setup
-		$_SESSION["session_id"] = session_id();
-		//update new user session id
-		$sql = "update user set session_id=? where account=?";
+		$_SESSION["session_id"] = session_id().time();
+		//update session id and login ip
+		$sql = "update user set session_id=?,last_login_ip=login_ip,login_ip=? where account=?";
 		$stmt = $conn->prepare($sql);
-		$stmt->bind_param('ss',$_SESSION["session_id"],$account);
-		$stmt->execute();
-		$stmt->close();
-		//update login ip
-		$sql = "update user set last_login_ip=login_ip,login_ip=? where account=?";
-		$stmt = $conn->prepare($sql);
-		$stmt->bind_param('ss',$_SERVER['REMOTE_ADDR'],$account);
+		$stmt->bind_param('sss',$_SESSION["session_id"],$_SERVER['REMOTE_ADDR'],$account);
 		$stmt->execute();
 		$stmt->close();
 		
