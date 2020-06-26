@@ -32,4 +32,5 @@
 		echo '<a id="login_page_link" href="/DBFinalProject/login_page.php">登入</a>';
 		echo '<a id="register_page_link" href="/DBFinalProject/register_page.php">前往註冊</a>';
 	}
+	$conn->close();
 ?>

@@ -34,5 +34,5 @@
 </body>
 </html>
 
-<a id="main_page_link" href="/DBFinalProject/index.php">回到鄉民的世界</a>
+<a id="main_page_link" href="/DBFinalProject/index.php">回到主頁</a>
 <a id="login_page_link" href="/DBFinalProject/login_page.php">登入</a>

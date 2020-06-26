@@ -1,3 +1,4 @@
+<title>登入</title>
 <form action="login.php" method="post">
 	<label id="account_label" class="account" for="account">account :</label><br>
 	<?php
@@ -9,12 +10,15 @@
 	?>
 	<label id="password_label" class="password" for="password">password :</label><br>
     <input id="password_input" class="password" type="password" name="password"><br>
-    <input id="submit_button" type="submit">
+    <input id="submit_button" type="submit" value="登入">
 </form>
 <?php
 	if(isset($_GET['err_msg'])){
 		if($_GET['err_msg']=="login_fail"){
 			echo "<script type='text/javascript'>alert('帳號或密碼錯誤');</script>";
+		}
+		else if($_GET['err_msg']=='post_without_login'){
+			echo "<script type='text/javascript'>alert('請先登入再PO文');</script>";
 		}
 	}
 ?>

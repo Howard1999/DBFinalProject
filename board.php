@@ -44,6 +44,7 @@
 		$stmt->bind_result($board,$popularity);
 		if($stmt->fetch()){
 			$_SESSION["last view board"] = $board;
+			echo "<title>".$board."</title>";
 			$stmt->close();
 			if($login){
 				// if login then he can post artical
@@ -67,7 +68,7 @@
 	}
 	//check page is enough
 	$total_page = 0;
-	$artical_building_per_page = 15;
+	$artical_building_per_page = 10;
 	
 	$stmt = $conn->prepare("select count(building_ID) from artical_building where board_name = ?");
 	$stmt->bind_param("s",$board);
@@ -95,17 +96,17 @@
 		
 	//genarate artical building link
 	$order_by = building_ID;
-	$offset = ($page-1)*15;
+	$offset = ($page-1)*$artical_building_per_page;
 	$stmt = $conn->prepare("select building_ID,title,account,create_time from artical_building where board_name=? order by ? limit ? offset ?");
 	$stmt->bind_param("ssii",$board,$order_by,$artical_building_per_page,$offset);
 	$stmt->execute();
 	$stmt->bind_result($building_ID,$title,$account,$create_time);
 	while($stmt->fetch()){
-		// an artical section
+		// an artical building section
 		echo '<section class="artical_building">';
-		echo '<a class="artical_title_link" href="/DBFinalProject/artical_building.php?building_ID='.$building_ID.'">'.$title.'</a>';
-		echo '<p class="artical_author">作者:'.$account.'</p>';
-		echo '<p class="artical_create_time">發布時間:'.$create_time.'</p>';
+		echo '<a class="building_title_link" href="/DBFinalProject/artical_building.php?building_ID='.$building_ID.'">'.$title.'</a>';
+		echo '<p class="building_author">作者:'.$account.'</p>';
+		echo '<p class="building_create_time">發布時間:'.$create_time.'</p>';
 		echo '</section>';
 	}
 	$stmt->close();
@@ -133,4 +134,5 @@
 			echo '<a id="next_page">下一頁</a>';
 		}
 	}
+	$conn->close();
 ?>

@@ -17,8 +17,8 @@ if ($conn->connect_error) {
 }
 
 if (isset($_POST['account']) && isset($_POST['password'])){
-	$account = $_POST['account'];
-	$password = $_POST['password'];
+	$account = mysqli_real_escape_string($conn,$_POST['account']);
+	$password = mysqli_real_escape_string($conn,$_POST['password']);
 	$sql = "select user_name from user where account=? && password=?";
 	$stmt = $conn->prepare($sql);
 	$stmt->bind_param('ss',$account,$password);
