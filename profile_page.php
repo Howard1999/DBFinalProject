@@ -50,3 +50,4 @@ if ($result = mysqli_query($conn,$sql))
 	mysqli_free_result($result);
 }
 ?>
+<a id="update_link" href="/DBFinalProject/update_profile.php">編輯</a>
