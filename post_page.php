@@ -76,19 +76,19 @@
 	else if(isset($_GET['building_ID'])){
 		$building_ID = mysqli_real_escape_string($conn,$_GET["building_ID"]);
 		// check building_ID is exist
-		$query = $conn->query('select title,create_time from artical_building where building_ID="'.$building_ID.'"');
+		$query = $conn->query('select title,create_time from article_building where building_ID="'.$building_ID.'"');
 		if($row = $query->fetch_row()){
 			$title = $row[0];
 			$create_time = $row[1];
 			echo "<title>".$title."</title>";
-			echo '<a id="board_link" href="/DBFinalProject/artical_building.php?building_ID='.$building_ID.'">取消</a>';
+			echo '<a id="board_link" href="/DBFinalProject/article_building.php?building_ID='.$building_ID.'">取消</a>';
 		}
 		else{
 			redirect();
 		}
 		$query->close();
 		// header
-		echo '<h1 id="artical_building_title">'.$title.'</h1>';
+		echo '<h1 id="article_building_title">'.$title.'</h1>';
 		echo '<h5 id="create_time">創建時間:'.$create_time.'</h5>';
 		echo '</header>';
 		// header end

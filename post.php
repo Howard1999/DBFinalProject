@@ -53,9 +53,9 @@
 		
 		$conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
 		$success = false;
-		if($conn->query('insert into artical_building values(default,"'.$board_name.'","'.$account.'","'.$title.'",current_timestamp)')){
+		if($conn->query('insert into article_building values(default,"'.$board_name.'","'.$account.'","'.$title.'",current_timestamp)')){
 			$building_ID = $conn->insert_id;
-			if($conn->query('insert into artical values(default,'.$building_ID.',"'.$account.'","'.$content.'",current_timestamp)')){
+			if($conn->query('insert into article values(default,'.$building_ID.',"'.$account.'","'.$content.'",current_timestamp)')){
 				$success = true;
 			}
 		}
@@ -64,16 +64,16 @@
 		}
 		$conn->commit();
 	}
-	// post on artical building
+	// post on article building
 	else if(isset($_POST['building_ID'])){
 		$building_ID = mysqli_real_escape_string($conn,$_POST['building_ID']);
-		if($conn->query('insert into artical values(default,'.$building_ID.',"'.$account.'","'.$content.'",current_timestamp)')){
+		if($conn->query('insert into article values(default,'.$building_ID.',"'.$account.'","'.$content.'",current_timestamp)')){
 			$success = true;
 		}
 	}
 	$conn->close();
 	if($success){
-		header("Location: /DBFinalProject/artical_building.php?building_ID=".$building_ID);
+		header("Location: /DBFinalProject/article_building.php?building_ID=".$building_ID);
 		die();
 	}
 	else{

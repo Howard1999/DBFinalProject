@@ -21,7 +21,7 @@ create table user(
 	foreign key(board_name)references board(board_name)on delete set null on update cascade
 )ENGINE=INNODB;
 
-create table artical_building(
+create table article_building(
 	building_ID int AUTO_INCREMENT,
 	board_name varchar(20)not null,
 	account varchar(20)not null,
@@ -32,34 +32,34 @@ create table artical_building(
 	foreign key(account)references user(account)on delete cascade
 )ENGINE=INNODB;
 
-create table artical(
-	artical_ID int AUTO_INCREMENT,
+create table article(
+	article_ID int AUTO_INCREMENT,
 	building_ID int not null,
 	account varchar(20)not null,
 	content text,
 	last_edit_time datetime,
-	primary key(artical_ID),
-	foreign key(building_ID)references artical_building(building_ID)on delete cascade,
+	primary key(article_ID),
+	foreign key(building_ID)references article_building(building_ID)on delete cascade,
 	foreign key(account)references user(account)on delete cascade
 )ENGINE=INNODB;
 
 create table comment(
 	account varchar(20)not null,
-	artical_ID int not null,
+	article_ID int not null,
 	content varchar(100)not null,
 	post_time datetime,
 	primary key(account, post_time),
 	foreign key(account)references user(account)on delete cascade,
-	foreign key(artical_ID)references artical(artical_ID)on delete cascade
+	foreign key(article_ID)references article(article_ID)on delete cascade
 )ENGINE=INNODB;
 
 create table like_dislike(
 	account varchar(20)not null,
-	artical_ID int not null,
+	article_ID int not null,
 	type boolean not null,
-	primary key(account, artical_ID),
+	primary key(account, article_ID),
 	foreign key(account)references user(account)on delete cascade,
-	foreign key(artical_ID)references artical(artical_ID)on delete cascade
+	foreign key(article_ID)references article(article_ID)on delete cascade
 )ENGINE=INNODB;
 
 create table ban_account(
@@ -73,4 +73,4 @@ create table ban_account(
 	foreign key(board_name)references board(board_name)on delete cascade on update cascade
 )ENGINE=INNODB;
 
---drop table ban_account, like_dislike, comment, artical, artical_building, user, board;
+--drop table ban_account, like_dislike, comment, article, article_building, user, board;

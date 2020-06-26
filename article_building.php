@@ -26,7 +26,7 @@
 		$building_ID = mysqli_real_escape_string($conn,$_GET['building_ID']);
 	}
 	// check building_ID is exist
-	$query = $conn->query('select title,create_time,board_name from artical_building where building_ID="'.$building_ID.'"');
+	$query = $conn->query('select title,create_time,board_name from article_building where building_ID="'.$building_ID.'"');
 	if($row = $query->fetch_row()){
 		$title = $row[0];
 		$create_time = $row[1];
@@ -66,28 +66,28 @@
 		echo '<a id="reply_link" href="/DBFinalProject/board.php?board_name='.$board_name.'">回到版上</a>';
 	}
 	//
-	echo '<h1 id="artical_building_title">'.$title.'</h1>';
+	echo '<h1 id="article_building_title">'.$title.'</h1>';
 	echo '<h5 id="create_time">創建時間:'.$create_time.'</h5>';
 	echo '</header>';
 	// header end
 	
-	// show artical
+	// show article
 	$floor_count = 1;
-	$query = $conn->query('select user.account,content,last_edit_time,user_name,artical_ID from artical natural join user where building_ID='.$building_ID.' order by artical_ID');
+	$query = $conn->query('select user.account,content,last_edit_time,user_name,article_ID from article natural join user where building_ID='.$building_ID.' order by article_ID');
 	while($row = $query->fetch_row()){
 		$account = $row[0];
 		$content = $row[1];
 		$last_edit = $row[2];
 		$author = $row[3];
-		$artical_ID = $row[4];
+		$article_ID = $row[4];
 		$space = '&nbsp;&nbsp;&nbsp;&nbsp';
-		// an artical section
-		echo '<section class="artical">';
-		echo '<p class="artical_header">'.$floor_count.'樓'.$space.'作者: '.$author.$space.'最後編輯: '.$last_edit.$space;
+		// an article section
+		echo '<section class="article">';
+		echo '<p class="article_header">'.$floor_count.'樓'.$space.'作者: '.$author.$space.'最後編輯: '.$last_edit.$space;
 		if($account==$user_account)
-			echo '<a href="/DBFinalProject/edit.php?artical_ID='.$artical_ID.'">編輯</a>';
+			echo '<a href="/DBFinalProject/edit.php?article_ID='.$article_ID.'">編輯</a>';
 		echo '</p>';
-		echo '<textarea class="artical_content" cols= "60" rows="10" disabled>'.$content.'</textarea>';
+		echo '<textarea class="article_content" cols= "60" rows="10" disabled>'.$content.'</textarea>';
 		echo '</section>';
 		$floor_count++;
 	}
@@ -96,7 +96,7 @@
 	$conn->close();
 ?>
 <style>
-	.artical_content{
+	.article_content{
 		resize:none;
 	}
 </style>
