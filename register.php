@@ -5,10 +5,9 @@
 </head>
 <body>
 <?php
-	session_start();
-	$servername = "localhost";
-	$username = "root";
-	$passwordd = "eb87oU7BGKxqxgSR";
+	$servername = "127.0.0.1";
+	$username = "team1";
+	$passwordd = "DB338HKkvRVOZzb";
 	$dbname = "team1";
 	
 	$conn = new mysqli($servername,$username,$passwordd,$dbname);
@@ -18,6 +17,7 @@
 		printf("Error loading character set utf8: %s\n",$conn->error);
 		exit();
 	}
+	
 	if(mysqli_connect_errno($conn))
 	{
 		printf("Connect failed: %s\n",mysqli_connect_error());
@@ -32,22 +32,20 @@
 	$in_user_name =null;
 	$in_account = null;
 	$in_password = null;
-	$sql="SELECT user_name from `user`";
+	$sql="SELECT * from `user` where user_name='$user_name' or account = '$account' ";
 	$result= mysqli_query($conn,$sql);
 	
-	while($row = mysqli_fetch_array($result,MYSQLI_NUM))
+	while($row = mysqli_fetch_row($result))
 	{
-		if($row[0]==$user_name)
+		if($row[0]==$user_name || $row[1]==$account)
 		{
-            echo "<script type='text/javascript'>alert('使用者名稱已有人註冊');</script>";
-			header("Location: /DBFinalProject/register_page.php");
+			header("Location: /DBFinalProject/register_page.php?err_msg=register_fail");
 			die();
 		}
 	}
-	mysqli_query($conn,"INSERT INTO `user`(`user_name`, `account`, `password`, `user_authority`, `last_login_time`, `board_name`, `login_ip`, `last_login_ip`, `session_id`) VALUES ('$user_name', '$account', '$password', 'C', NULL, NULL, '', '', '')");
+	mysqli_query($conn,"INSERT INTO `user`(`user_name`, `account`, `password`, `user_authority`, `last_login_time`, `board_name`, `login_ip`, `last_login_ip`, `session_id`) VALUES ('$user_name', '$account', '$password', 'C', NULL, NULL, NULL, NULL, NULL)");
 	mysqli_close($conn);
-	echo "<script type='text/javascript'>alert('註冊成功');</script>";
-	header("Location: /DBFinalProject/login_page.php");
+	header("Location: /DBFinalProject/login_page.php?account='$account'");
 	die();
 ?>
 </body> 
