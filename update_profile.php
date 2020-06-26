@@ -26,7 +26,7 @@ if ($conn->connect_error) {
 if(isset($_POST['update'])){
     $account = $_POST['account'];
   
-    $query = "UPDATE 'users' SET user_name='$_POST[user_name]',password='$_POST[password]' WHERE session_id = $_SESSION["session_id"]";
+    $query = "UPDATE 'user' SET user_name='$_POST[user_name]',password='$_POST[password]' WHERE account='$_POST[account]'";
     $query_run = mysqli_query($conn,$query)
       
     if($query_run){
