@@ -16,7 +16,7 @@
 	}
 
 	
-	$sql="SELECT * FROM users WHERE session_id = $_SESSION["session_id"]";
+	$sql="SELECT * FROM user WHERE session_id = $_SESSION["session_id"]";
 	
 
 if ($result = mysqli_query($conn,$sql))
