@@ -22,6 +22,15 @@
 	</table>
 	<input type ="submit" value="註冊">
 	</form>
+<?php
+	if(isset($_GET['err_msg']))
+	{
+		if($_GET['err_msg']=="register_fail")
+		{
+			echo "<script type='text/javascript'>alert('使用者名稱或帳號已有人註冊過!');</script>";
+		}
+	}
+?>
 </body>
 </html>
 
