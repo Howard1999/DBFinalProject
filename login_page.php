@@ -18,7 +18,10 @@
 			echo "<script type='text/javascript'>alert('帳號或密碼錯誤');</script>";
 		}
 		else if($_GET['err_msg']=='post_without_login'){
-			echo "<script type='text/javascript'>alert('請先登入再PO文');</script>";
+			echo "<script type='text/javascript'>alert('請先登入後再PO文');</script>";
+		}
+		else if($_GET['err_msg']=='edit_without_login'){
+			echo "<script type='text/javascript'>alert('請先登入後再編輯');</script>";
 		}
 	}
 ?>

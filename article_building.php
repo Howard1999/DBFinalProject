@@ -85,7 +85,7 @@
 		echo '<section class="article">';
 		echo '<p class="article_header">'.$floor_count.'樓'.$space.'作者: '.$author.$space.'最後編輯: '.$last_edit.$space;
 		if($account==$user_account)
-			echo '<a href="/DBFinalProject/edit.php?article_ID='.$article_ID.'">編輯</a>';
+			echo '<a href="/DBFinalProject/edit_page.php?building_ID='.$building_ID.'&article_ID='.$article_ID.'">編輯</a>';
 		echo '</p>';
 		echo '<textarea class="article_content" cols= "60" rows="10" disabled>'.$content.'</textarea>';
 		echo '</section>';

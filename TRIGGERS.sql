@@ -10,5 +10,11 @@ create trigger login_time_update before update on user
 			end if;
 		end&&
 
+create trigger last_edit_time_update before update on article
+	for each row
+		begin
+			set new.last_edit_time=current_timestamp;
+		end&&
+
 delimiter ;
 --drop trigger login_time_update;
