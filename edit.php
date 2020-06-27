@@ -52,7 +52,7 @@
 	$string_check = true;
 	if(isset($conn,$_POST['title'])){
 		$title = mysqli_real_escape_string($conn,$_POST['title']);
-		if(strlen($title)==0){
+		if(mb_strlen($title)==0){
 			?>
 				<script type="text/javascript">
 				alert("標題不能為空");
@@ -63,7 +63,7 @@
 			<?php
 			$string_check = false;
 		}
-		else if(strlen($title)>50){
+		else if(mb_strlen($title)>50){
 			?>
 				<script type="text/javascript">
 				alert("標題長度需在50以下");
@@ -76,7 +76,7 @@
 		}
 	}
 	$content = mysqli_real_escape_string($conn,$_POST['content']);
-	if(strlen($content)==0){
+	if(mb_strlen($content)==0){
 		?>
 			<script type="text/javascript">
 			alert("內文不能為空");
@@ -87,7 +87,7 @@
 		<?php
 		$string_check = false;
 	}
-	else if(strlen($content)>10000){
+	else if(mb_strlen($content)>10000){
 		?>
 			<script type="text/javascript">
 			alert("內文限制10000字以下");

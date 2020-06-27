@@ -49,21 +49,21 @@
 
 	if(isset($_POST['title'])){
 		$title = mysqli_real_escape_string($conn,$_POST['title']);
-		if(strlen($title)==0){
+		if(mb_strlen($title)==0){
 			$string_check = false;
 			$err_msg = "標題不能為空";
 		}
-		else if(strlen($title)>50){
+		else if(mb_strlen($title)>50){
 			$err_msg = "標題長度需在50以下";
 			$string_check = false;
 		}
 	}
 	$content = mysqli_real_escape_string($conn,$_POST['content']);
-	if(strlen($content)==10){
+	if(mb_strlen($content)==10){
 		$err_msg = "內文不能為空";
 		$string_check = false;
 	}
-	else if(strlen($content)>10000){
+	else if(mb_strlen($content)>10000){
 		$err_msg = "內文限制10000字以下";
 		$string_check = false;
 	}

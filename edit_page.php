@@ -51,7 +51,7 @@
 	if(isset($_GET['building_ID'])&&isset($_GET['article_ID'])){
 		$article_ID = mysqli_real_escape_string($conn,$_GET["article_ID"]);
 		$building_ID = mysqli_real_escape_string($conn,$_GET["building_ID"]);
-		// check building_ID is exist
+		// check building_ID is exist and get building data
 		$query = $conn->query('select title,create_time from article_building where building_ID="'.$building_ID.'"');
 		if($row = $query->fetch_row()){
 			$title = $row[0];
