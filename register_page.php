@@ -25,9 +25,25 @@
 <?php
 	if(isset($_GET['err_msg']))
 	{
-		if($_GET['err_msg']=="register_fail")
+		if($_GET['err_msg']=="register_user_name_fail")
 		{
-			echo "<script type='text/javascript'>alert('使用者名稱或帳號已有人註冊過!');</script>";
+			echo "<script type='text/javascript'>alert('使用者名稱已有人註冊過!');</script>";
+		}
+		else if ($_GET['err_msg']=="register_account_fail")
+		{
+			echo "<script type='text/javascript'>alert('帳號已有人註冊過!');</script>";
+		}
+		else if ($_GET['err_msg']=="usernamefail")
+		{
+			echo "<script type='text/javascript'>alert('使用者名稱不能為空!');</script>";
+		}
+		else if ($_GET['err_msg']=="accountfail")
+		{
+			echo "<script type='text/javascript'>alert('帳號不能為空!');</script>";
+		}
+		else if ($_GET['err_msg']=="passwordfail")
+		{
+			echo "<script type='text/javascript'>alert('密碼不能為空!');</script>";
 		}
 	}
 ?>
