@@ -61,10 +61,10 @@
 		die();
 	}
 	//check page is assign
+	$page=1;
 	$page_exist = false;
 	if(isset($_GET["page"])){
 		$page = $_GET["page"];
-		$page_exist = true;
 	}
 	//check page is enough
 	$total_page = 0;
@@ -93,14 +93,38 @@
 	echo '<p id="popularity">人氣:'.$popularity.'</p>';
 	echo '</header>';
 	// header end
-		
+	// sort keys
+	echo '<form id="order" action="board.php" method="get">';
+	echo '<input type=hidden name="board_name" value="'.$board.'">';
+	echo '<input type=hidden name="page" value="'.$page.'">';
+	?>
+			<select name="order_key" name="order_key">
+				<option value="create_time">創建時間</option>
+				<option value="account">作者</option>
+				<option value="title">標題</option>
+			</select>
+			<select name="order_type" name="order_type">
+				<option value="asc">升順</option>
+				<option value="desc">降順</option>
+			</select>
+			<input id="order" type="submit" value="排序">
+		</form>
+	<?php
 	//genarate article building link
-	$order_by = building_ID;
+	$order_key = 'title';
+	$order_type = 'asc';
+	if(isset($_GET['order_key']))$order_key=$_GET['order_key'];
+	if(isset($_GET['order_type']))$order_type=$_GET['order_type'];
+
+	$_SESSION['order_key'] = $order_key;
+	$_SESSION['order_type'] = $order_type;
+
 	$offset = ($page-1)*$article_building_per_page;
-	$stmt = $conn->prepare("select building_ID,title,account,create_time from article_building where board_name=? order by ? limit ? offset ?");
-	$stmt->bind_param("ssii",$board,$order_by,$article_building_per_page,$offset);
+	$stmt = $conn->prepare("select building_ID,title,account,create_time from article_building where board_name=? order by ".$order_key." ".$order_type." limit ? offset ?");
+	$stmt->bind_param("sii",$board,$article_building_per_page,$offset);
 	$stmt->execute();
 	$stmt->bind_result($building_ID,$title,$account,$create_time);
+	echo '<section id="article_building_list">';
 	while($stmt->fetch()){
 		// an article building section
 		echo '<section class="article_building">';
@@ -109,30 +133,44 @@
 		echo '<p class="building_create_time">發布時間:'.$create_time.'</p>';
 		echo '</section>';
 	}
+	echo '</section>';
 	$stmt->close();
 	// if there are no any page then show a post link
 	if($total_page==0){
-		echo '<a id="no_article_prompt" href="/DBFinalProject/post_page.php?board_name='.$board.'>這裡還沒有任何文章，發表第一篇</a>';
+		echo '<a id="no_article_prompt" href="/DBFinalProject/post_page.php?board_name='.$board.'">這裡還沒有任何文章，發表第一篇</a>';
 	}//other wise give user previous, next page link and show where is the page now
 	else{
+		echo '<section id="page_footer">';
 		// previous page
 		if($page>1){
 			$pre_page = $page-1;
-			echo '<a id="pre_page" href="/DBFinalProject/board.php?board_name='.$board.'&page='.$pre_page.'">上一頁</a>';
+			echo '<a id="pre_page" class="page_footer" href="/DBFinalProject/board.php?board_name='.$board.'&page='.$pre_page.'&order_key='.$order_key.'&order_type='.$order_type.'">上一頁</a>';
 		}
 		else{
-			echo '<a id="pre_page">上一頁</a>';
+			echo '<a id="pre_page" class="page_footer">上一頁</a>';
 		}
 		// page now
-		echo '<a>第'.$page.'頁</a>';
+		echo '<form class="page_footer" method="get" action="board.php">';
+		echo '<input id="page_input" name="page" type="text" size=1 placeholder="'.$page.'/'.$total_page.'" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,\'\')">';
+		echo '<input name="board_name" type="hidden" value="'.$board.'">';
+		echo '<input name="order_key" type="hidden" value="'.$order_key.'">';
+		echo '<input name="order_type" type="hidden" value="'.$order_type.'">';
+		echo '</form>';
+		//echo '<a id="page" >第'.$page.'頁</a>';
 		// next page
 		if($page<$total_page){
 			$next_page = $page+1;
-			echo '<a id="next_page" href="/DBFinalProject/board.php?board_name='.$board.'&page='.$next_page.'">下一頁</a>';
+			echo '<a id="next_page" class="page_footer" href="/DBFinalProject/board.php?board_name='.$board.'&page='.$next_page.'&order_key='.$order_key.'&order_type='.$order_type.'">下一頁</a>';
 		}
 		else{
-			echo '<a id="next_page">下一頁</a>';
+			echo '<a id="next_page" class="page_footer">下一頁</a>';
 		}
+		echo '</section>';
 	}
 	$conn->close();
 ?>
+<style>
+	.page_footer{
+		display:inline;
+	}
+</style>

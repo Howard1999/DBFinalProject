@@ -32,5 +32,14 @@
 		echo '<a id="login_page_link" href="/DBFinalProject/login_page.php">登入</a>';
 		echo '<a id="register_page_link" href="/DBFinalProject/register_page.php">前往註冊</a>';
 	}
+	echo '<br>';
+	// genarate board list
+	$result = $conn->query('select board_name,popularity from board order by popularity desc');
+	while($row=$result->fetch_row()){
+		$board_name = $row[0];
+		$popularity = $row[1];
+		echo '<a href="/DBFinalProject/board.php?board_name='.$board_name.'">'.$board_name." 人氣: ".$popularity.'</a><br>';
+	}
+	
 	$conn->close();
 ?>

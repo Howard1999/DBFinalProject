@@ -17,8 +17,8 @@
 	}
 	// function
 	function redirect(){
-		if(isset($_SESSION['last view board'])&&isset($_SESSION['last view page'])){
-			header("Location: /DBFinalProject/board.php?board_name=".$_SESSION['last view board']."&page=".$_SESSION['last view page']);
+		if(isset($_SESSION['last view board'])&&isset($_SESSION['last view page'])&&isset($_SESSION['order_key'])&&isset($_SESSION['order_type'])){
+			header('Location: /DBFinalProject/board.php?board_name='.$_SESSION['last view board'].'&page='.$_SESSION['last view page'].'&order_key='.$_SESSION['order_key'].'&order_type='.$_SESSION['order_type']);
 			die();
 		}
 		else{
@@ -67,7 +67,7 @@
 		// header end
 		
 		echo '<title>發文</title>';
-		echo '<form action="post.php" method="post">';
+		echo '<form id="post_area" action="post.php" method="post">';
 		echo '<input name="board_name" type="hidden" value="'.$_GET['board_name'].'">';
 		echo '<label id="title_label" class="title" for="title">標題 :</label><br>';
 		echo '<input id="title_input" class="title" type="text" name="title"><br>';
@@ -94,13 +94,13 @@
 		// header end
 		
 		echo '<title>回覆</title>';
-		echo '<form action="post.php" method="post">';
+		echo '<form id="post_area" action="post.php" method="post">';
 		echo '<input name="building_ID" type="hidden" value="'.$_GET['building_ID'].'">';
 		echo '<label id="content_label" class="content" for="content">回覆 :</label><br>';
 	}
 	$conn->close;
 ?>
-<textarea id="content_input" class="content" name="content" cols="50" rows="15"></textarea>
+<textarea id="content_input" class="content" name="content" cols="60" rows="10"></textarea>
 <input id="submit_button" type="submit" value="發布">
 </form>
 

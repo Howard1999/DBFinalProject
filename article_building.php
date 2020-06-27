@@ -31,6 +31,7 @@
 		$title = $row[0];
 		$create_time = $row[1];
 		$board_name = $row[2];
+		$conn->query('update board set popularity=popularity+1 where board_name="'.$board_name.'"');
 		echo "<title>".$title."</title>";
 	}
 	else{
@@ -59,8 +60,8 @@
 		echo '<a id="register_page_link" href="/DBFinalProject/register_page.php">前往註冊</a>';
 	}
 	
-	if(isset($_SESSION['last view board'])&&isset($_SESSION['last view page'])){
-		echo '<a id="board_link" href="/DBFinalProject/board.php?board_name='.$board_name.'&page='.$_SESSION['last view page'].'">回到版上</a>';
+	if(isset($_SESSION['last view board'])&&isset($_SESSION['last view page'])&&isset($_SESSION['order_key'])&&isset($_SESSION['order_type'])){
+		echo '<a id="board_link" href="/DBFinalProject/board.php?board_name='.$_SESSION['last view board'].'&page='.$_SESSION['last view page'].'&order_key='.$_SESSION['order_key'].'&order_type='.$_SESSION['order_type'].'">回到版上</a>';
 	}
 	else{
 		echo '<a id="reply_link" href="/DBFinalProject/board.php?board_name='.$board_name.'">回到版上</a>';
@@ -74,6 +75,7 @@
 	// show article
 	$floor_count = 1;
 	$query = $conn->query('select user.account,content,last_edit_time,user_name,article_ID from article natural join user where building_ID='.$building_ID.' order by article_ID');
+	echo '<section id="article_list">';
 	while($row = $query->fetch_row()){
 		$account = $row[0];
 		$content = $row[1];
@@ -85,12 +87,13 @@
 		echo '<section class="article">';
 		echo '<p class="article_header">'.$floor_count.'樓'.$space.'作者: '.$author.$space.'最後編輯: '.$last_edit.$space;
 		if($account==$user_account)
-			echo '<a href="/DBFinalProject/edit_page.php?building_ID='.$building_ID.'&article_ID='.$article_ID.'">編輯</a>';
+			echo '<a class="edit_link" href="/DBFinalProject/edit_page.php?building_ID='.$building_ID.'&article_ID='.$article_ID.'">編輯</a>';
 		echo '</p>';
 		echo '<textarea class="article_content" cols= "60" rows="10" disabled>'.$content.'</textarea>';
 		echo '</section>';
 		$floor_count++;
 	}
+	echo '</section>';
 	$query->close();
 
 	$conn->close();

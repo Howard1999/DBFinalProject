@@ -17,8 +17,8 @@
 	}
 	// function
 	function redirect(){
-		if(isset($_SESSION['last view board'])&&isset($_SESSION['last view page'])){
-			header("Location: /DBFinalProject/board.php?board_name=".$_SESSION['last view board']."&page=".$_SESSION['last view page']);
+		if(isset($_SESSION['last view board'])&&isset($_SESSION['last view page'])&&isset($_SESSION['order_key'])&&isset($_SESSION['order_type'])){
+			header('Location: /DBFinalProject/board.php?board_name='.$_SESSION['last view board'].'&page='.$_SESSION['last view page'].'&order_key='.$_SESSION['order_key'].'&order_type='.$_SESSION['order_type']);
 			die();
 		}
 		else{
@@ -143,8 +143,8 @@
 				alert("更新失敗，請稍後再試");
 				
 				<?php
-				if(isset($_SESSION['last view board'])&&isset($_SESSION['last view page'])){
-					echo "window.location.href = '/DBFinalProject/board.php?board_name=".$_SESSION['last view board']."&page=".$_SESSION['last view page']."';";
+				if(isset($_SESSION['last view board'])&&isset($_SESSION['last view page'])&&isset($_SESSION['order_key'])&&isset($_SESSION['order_type'])){
+					echo "window.location.href = '/DBFinalProject/board.php?board_name=".$_SESSION['last view board']."&page=".$_SESSION['last view page']."&order_key=".$_SESSION['order_key']."&order_type=".$_SESSION['order_type'].";";
 				}
 				else{
 					echo '"window.location.href ="index.php;"';

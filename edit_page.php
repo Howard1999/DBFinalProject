@@ -17,8 +17,8 @@
 	}
 	// function
 	function redirect(){
-		if(isset($_SESSION['last view board'])&&isset($_SESSION['last view page'])){
-			header("Location: /DBFinalProject/board.php?board_name=".$_SESSION['last view board']."&page=".$_SESSION['last view page']);
+		if(isset($_SESSION['last view board'])&&isset($_SESSION['last view page'])&&isset($_SESSION['order_key'])&&isset($_SESSION['order_type'])){
+			header('Location: /DBFinalProject/board.php?board_name='.$_SESSION['last view board'].'&page='.$_SESSION['last view page'].'&order_key='.$_SESSION['order_key'].'&order_type='.$_SESSION['order_type']);
 			die();
 		}
 		else{
@@ -89,7 +89,7 @@
 		}
 		$result->close();
 		// form start
-		echo '<form action="edit.php" method="post">';
+		echo '<form id="edit_area" action="edit.php" method="post">';
 		echo '<input name="building_ID" type="hidden" value="'.$_GET['building_ID'].'">';
 		echo '<input name="article_ID" type="hidden" value="'.$_GET['article_ID'].'">';
 		// if is first then can update title
@@ -101,7 +101,7 @@
 		else{
 			echo '<label id="content_label" class="content" for="content">回覆 :</label><br>';
 		}
-		echo '<textarea id="content_input" class="content" name="content" cols="50" rows="15 ">'.$content.'</textarea>';
+		echo '<textarea id="content_input" class="content" name="content" cols="60" rows="10">'.$content.'</textarea>';
 		echo '<input id="submit_button" type="submit" value="更新">';
 	}
 	else{
