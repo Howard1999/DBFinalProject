@@ -67,8 +67,8 @@
 		echo '</header>';
 		// header end
 		
-		// check article_ID is exist
-		$query = $conn->query('select content,account from article where article_ID='.$article_ID);
+		// check article_ID is exist and is belong user and building
+		$query = $conn->query('select content,account from article where article_ID='.$article_ID.' and building_ID='.$building_ID);
 		if($row = $query->fetch_row()){
 			$content = $row[0];
 			$owner_account = $row[1];
