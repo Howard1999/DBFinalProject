@@ -28,7 +28,21 @@
 	$user_name=$_POST['user_name'];
 	$account=$_POST['account'];
 	$password=$_POST['password'];
-	
+	if($user_name=="")
+	{
+		header("Location: register_page.php?err_msg=usernamefail");
+		die();
+	}
+	else if ($account=="")
+	{
+		header("Location: register_page.php?err_msg=accountfail");
+		die();
+	}
+	else if ($password=="")
+	{
+		header("Location: register_page.php?err_msg=passwordfail");
+		die();
+	}
 	$in_user_name =null;
 	$in_account = null;
 	$in_password = null;
@@ -37,9 +51,14 @@
 	
 	while($row = mysqli_fetch_row($result))
 	{
-		if($row[0]==$user_name || $row[1]==$account)
+		if($row[0]==$user_name)
 		{
-			header("Location: /DBFinalProject/register_page.php?err_msg=register_fail");
+			header("Location: register_page.php?err_msg=register_user_name_fail");
+			die();
+		}
+		else if ($row[1]==$account)
+		{
+			header("Location: register_page.php?err_msg=register_account_fail");
 			die();
 		}
 	}
