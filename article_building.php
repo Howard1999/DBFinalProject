@@ -55,7 +55,7 @@
 			$user_name = $row[0];
 			$user_account = $row[1];
 			$login = true;
-			echo '<a id="logout_page_link" href="/DBFinalProject/logout.php"><img src="logout.png" border="0" alt="登出" width="10%" height="10%" style="position:absolute;left:65.5%;top:3%;"></a>';
+			echo '<a id="logout_page_link" href="/DBFinalProject/logout.php"><img src="logout.png" border="0" alt="登出" width="10%" height="10%" style="position:absolute;left:65.8%;top:3%;"></a>';
 			echo '<a id="reply_link" href="/DBFinalProject/post_page.php?building_ID='.$building_ID.'"><img src="reply.png" border="0" alt="回覆文章" width="10%" height="10%" style="position:absolute;left:75.5%;top:3%;"></a>';
 		}
 		$query->close();
@@ -72,11 +72,12 @@
 		echo '<a id="reply_link" href="/DBFinalProject/board.php?board_name='.$board_name.'"><img src="go_board.png" border="0" alt="回到版上" width="10%" height="10%" style="position:absolute;left:86%;top:3%;"></a>';
 	}
     //
-    echo '<div style="text-align:center">';
-    echo '<div style="border-width:6px;border-style:ridge;border-color:#FFAC55;padding:3px;width:30%;">';
+    echo '<div style="border-width:6px;border-style:ridge;border-color:#FFAC55;padding:3px;width:30%;" "text-align:center">';
     echo '<h1 id="article_building_title">'.$title.'</h1>';
     echo '</div>';
-	echo '<h5 id="create_time">創建時間:'.$create_time.'</h5>';
+    echo '<div style="text-align:center">';
+    echo '<h5 id="create_time">創建時間:'.$create_time.'</h5>';
+    echo '</div>';
 	echo '</header>';
 	// header end
 	
@@ -94,7 +95,8 @@
 		// an article section
         echo '<section class="article">';
 
-        echo '<div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;width:60%;">';
+        echo '<div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;width:50%;" "text-align:center">';
+        echo '<div style="text-align:center">';
 		echo '<p class="article_header">'.$floor_count.'樓'.$space.'作者: '.$author.$space.'最後編輯: '.$last_edit.$space;
 		if($account==$user_account)
 			echo '<a class="edit_link" href="/DBFinalProject/edit_page.php?building_ID='.$building_ID.'&article_ID='.$article_ID.'">編輯</a>';
@@ -120,6 +122,7 @@
 				//echo '<a href="/DBFinalProject/dislike.php?article_ID='.$article_ID.'"><img src="噓.png" border="0" alt="噓" width="5%" height="5%" style="position:absolute;left:12%;top:42%;"></a>';
 			echo '</p>';
         echo '</section>';
+        echo '</div>';
         echo '</div>';
 		// article content
 		echo '<textarea class="article_content" cols= "60" rows="10" disabled>'.$content.'</textarea>';
