@@ -105,6 +105,18 @@ input[type="text"], input[type="password"] {
 		{
 			echo "<script type='text/javascript'>alert('密碼不能為空!');</script>";
 		}
+		else if ($_GET['err_msg']=="usernametoolong")
+		{
+			echo "<script type='text/javascript'>alert('使用者名稱長度上限20字，請重新輸入');</script>";
+		}
+		else if ($_GET['err_msg']=="accounttoolong")
+		{
+			echo "<script type='text/javascript'>alert('帳號長度上限20字，請重新輸入');</script>";
+		}
+		else if ($_GET['err_msg']=="passwordtoolong")
+		{
+			echo "<script type='text/javascript'>alert('密碼上限20字，請重新輸入');</script>";
+		}
 	}
 ?>
 </body>
