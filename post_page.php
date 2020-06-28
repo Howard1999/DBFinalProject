@@ -15,7 +15,7 @@ body {
 
 
 </style>
-<>
+<body>
 <?php
 	session_start();
 	//connect to database
