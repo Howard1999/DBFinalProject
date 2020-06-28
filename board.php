@@ -1,3 +1,49 @@
+<!doctype html>
+<html>
+<style type="text/css">
+
+#main {
+  max-width: 600px;
+  margin: 0 auto; 
+}
+body {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	background: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pf-misctexture01-beer-000_5.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=c1552a7bdc2ea7b6e17d8d0d893c15be");
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+}
+body{font-family: arial,"Microsoft JhengHei","微軟正黑體",sans-serif !important;}
+#main_page_link{
+	display:inline-block;
+}
+#logout_link{
+	display:inline-block;
+}
+#building_title_link{
+	display:inline-block;
+	width:40px;
+	height:40px;
+	border:2px #9999FF solid;
+}
+#building_author{
+	display:inline-block;
+	
+}
+#building_author{
+	display:inline-block;
+	
+}
+#article_building{
+	display:inline-block;
+	
+}
+</style>
+
+
 <?php
 	session_start();
 	//connect to database
@@ -18,7 +64,7 @@
 	// header start 
 	// page link
 	echo '<header id="header">';
-	echo '<a id="main_page_link" href="/DBFinalProject/index.php">回到主頁</a>';
+	echo '<a id="main_page_link" href="/DBFinalProject/index.php"><input type="button" value="回到主頁" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 	$login = false;
 	if(isset($_SESSION['session_id'])){//login check
 		$stmt = $conn->prepare("select user_name from user where session_id = ?");
@@ -26,14 +72,14 @@
 		$stmt->execute();
 		$stmt->bind_result($user);
 		if($stmt->fetch()){
-			echo '<a id="logout_link" href="/DBFinalProject/logout.php">登出</a>';
+			echo '<a id="logout_link" href="/DBFinalProject/logout.php"><input type="button" value="登出" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 			$login = true;
 		}
 		$stmt->close();
 	}
 	if(!$login){
-		echo '<a id="login_page_link" href="/DBFinalProject/login_page.php">登入</a>';
-		echo '<a id="register_page_link" href="/DBFinalProject/register_page.php">前往註冊</a>';
+		echo '<a id="login_page_link" href="/DBFinalProject/login_page.php"><input type="button" value="登入" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
+		echo '<a id="register_page_link" href="/DBFinalProject/register_page.php"><input type="button" value="前往註冊" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 	}
 
 	//check board exist
@@ -48,7 +94,7 @@
 			$stmt->close();
 			if($login){
 				// if login then he can post article
-				echo '<a id="logout_link" href="/DBFinalProject/post_page.php?board_name='.$board.'">發表文章</a>';
+				echo '<a id="logout_link" href="/DBFinalProject/post_page.php?board_name='.$board.'"><input type="button" value="發表文章" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 			}
 		}
 		else{
@@ -98,16 +144,16 @@
 	echo '<input type=hidden name="board_name" value="'.$board.'">';
 	echo '<input type=hidden name="page" value="'.$page.'">';
 	?>
-			<select name="order_key" name="order_key">
-				<option value="create_time">創建時間</option>
-				<option value="account">作者</option>
-				<option value="title">標題</option>
+			<select class="form control" name="order_key" name="order_key" style="background-color:#BBDCEC">
+				<option value="create_time" style="color:black;font-weight:black">創建時間</option>
+				<option value="account" style="color:black;font-weight:black">作者</option>
+				<option value="title" style="color:black;font-weight:black">標題</option>
 			</select>
-			<select name="order_type" name="order_type">
-				<option value="asc">升順</option>
-				<option value="desc">降順</option>
+			<select name="order_type" name="order_type" style="background-color:#BBDCEC">
+				<option value="asc" style="color:black;font-weight:black">升順</option>
+				<option value="desc" style="color:black;font-weight:black">降順</option>
 			</select>
-			<input id="order" type="submit" value="排序">
+			<input id="order" type="submit" value="排序" style="width:60px;height:40px;border:2px #000000 solid;background-color:white;">
 		</form>
 	<?php
 	//genarate article building link
@@ -128,7 +174,7 @@
 	while($stmt->fetch()){
 		// an article building section
 		echo '<section class="article_building">';
-		echo '<a class="building_title_link" href="/DBFinalProject/article_building.php?building_ID='.$building_ID.'">'.$title.'</a>';
+		echo '<a class="building_title_link" href="/DBFinalProject/article_building.php?building_ID='.$building_ID.'"><input type="button" value="'.$title.'" style="width:120px;height:40px; color:#CEA107; background-color:#05143D;"><br></a>';
 		echo '<p class="building_author">作者:'.$user_name.'</p>';
 		echo '<p class="building_create_time">發布時間:'.$create_time.'</p>';
 		echo '</section>';
@@ -137,7 +183,7 @@
 	$stmt->close();
 	// if there are no any page then show a post link
 	if($total_page==0){
-		echo '<a id="no_article_prompt" href="/DBFinalProject/post_page.php?board_name='.$board.'">這裡還沒有任何文章，發表第一篇</a>';
+		echo '<a id="no_article_prompt" href="/DBFinalProject/post_page.php?board_name='.$board.'"><input type="button" value="這裡還沒有任何文章..發佈第一篇" style="width:120px;height:40px; color:#CEA107; background-color:#05143D;"><br></a>';
 	}//other wise give user previous, next page link and show where is the page now
 	else{
 		echo '<section id="page_footer">';
@@ -174,3 +220,5 @@
 		display:inline;
 	}
 </style>
+</body>
+</html>
