@@ -124,6 +124,12 @@
 			}
 			echo '</select>';
 		echo '</section>';
+		// input comment
+		echo '<form calss="comment_input" action="leave_comment.php" method="post">';
+			echo '<input type="hidden" name="article_ID" value="'.$article_ID.'">';
+			echo '<input type="text" name="comment" placeholder="留言">';
+			echo '<input type="submit" value="送出">';
+		echo '</form>';
 		$floor_count++;
 	}
 	echo '</section>';
@@ -145,7 +151,6 @@ body {
 }
 textarea {
 	resize:none;
-	text-align: center;
 }
 .article_content{
 	resize:none;
