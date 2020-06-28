@@ -29,12 +29,12 @@
 	// header start 
 	// page link
 	echo '<header id="header">';
-	echo '<a id="main_page_link" href="/DBFinalProject/index.php">回到主頁</a>';
+	echo '<a id="main_page_link" href="/DBFinalProject/index.php"><input type="button" value="回到主頁" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 	$login = false;
 	if(isset($_SESSION['session_id'])){//login check
 		$result = $conn->query('select user_name from user where session_id ="'.$_SESSION['session_id'].'"');
 		if($row = $result->fetch_row()){
-			echo '<a id="logout_link" href="/DBFinalProject/logout.php">登出</a>';
+			echo '<a id="logout_link" href="/DBFinalProject/logout.php"><input type="button" value="登出" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 			$login = true;
 		}
 		$result->close();
@@ -55,17 +55,23 @@
 				echo '<a id="board_link" href="/DBFinalProject/board.php?board_name='.$board_name.'&page='.$_SESSION['last view page'].'">取消</a>';
 			}
 			else{
-				echo '<a id="board_link" href="/DBFinalProject/board.php?board_name='.$board_name.'">取消</a>';
+				echo '<a id="board_link" href="/DBFinalProject/board.php?board_name='.$board_name.'"><input type="button" value="取消" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 			}
 		}
 		else{
 			redirect();
 		}
 		$result->close();
+?>
+<div style="text-align:center">	
+<?php
 		echo '<h1 id="board_name">'.$board_name.'</h1>';
 		echo '</header>';
 		// header end
-		
+?>
+</div>
+<div style="text-align:center">	
+<?php	
 		echo '<title>發文</title>';
 		echo '<form id="post_area" action="post.php" method="post">';
 		echo '<input name="board_name" type="hidden" value="'.$_GET['board_name'].'">';
@@ -81,7 +87,7 @@
 			$title = $row[0];
 			$create_time = $row[1];
 			echo "<title>".$title."</title>";
-			echo '<a id="board_link" href="/DBFinalProject/article_building.php?building_ID='.$building_ID.'">取消</a>';
+			echo '<a id="board_link" href="/DBFinalProject/article_building.php?building_ID='.$building_ID.'"><input type="button" value="取消" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 		}
 		else{
 			redirect();
@@ -100,12 +106,15 @@
 	}
 	$conn->close;
 ?>
-<textarea id="content_input" class="content" name="content" cols="60" rows="10"></textarea>
-<input id="submit_button" type="submit" value="發布">
+<textarea id="content_input" class="content" name="content" cols="60" rows="10" style="background-color:#E4E5E2;"></textarea>
+<br>
+<input id="submit_button" type="submit" value="發布" style="width:120px;height:40px; color:white; background-color:#05143D;">
 </form>
-
+</div>
 <style>
 	textarea{
 		resize: none;
 	}
 </style>
+</body>
+</html>
