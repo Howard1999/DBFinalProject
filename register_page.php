@@ -105,6 +105,10 @@ input[type="text"], input[type="password"] {
 		{
 			echo "<script type='text/javascript'>alert('密碼不能為空!');</script>";
 		}
+		else if ($_GET['err_msg']=="invalid")
+		{
+			echo "<script type='text/javascript'>alert('帳號不能有非法字元或中文!');</script>";
+		}
 		else if ($_GET['err_msg']=="usernametoolong")
 		{
 			echo "<script type='text/javascript'>alert('使用者名稱長度上限20字，請重新輸入');</script>";
