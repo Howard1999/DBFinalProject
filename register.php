@@ -25,14 +25,14 @@
 	}
 	mysqli_select_db($conn,"user");
 	
-	$account = mysqli_real_escape_string($conn,$_POST['account']);
-	
 	$user_name=mysqli_real_escape_string($conn,$_POST['user_name']);
 	$account=mysqli_real_escape_string($conn, $_POST['account']);
 	$password=mysqli_real_escape_string($conn, $_POST['password']);
-	$get_clean_username=preg_replace("/[^A-Za-z0-9 ]/", "", $user_name);
-	$get_clean_account=preg_replace("/[^A-Za-z0-9 ]/", "", $account);
-	$get_clean_password=preg_replace("/[^A-Za-z0-9 ]/", "", $password);
+	if(!preg_match("/^[A-Za-z0-9]+$/", $account))
+	{
+		header("Location: /DBFinalProject/register_page.php?err_msg=invalid");
+		die();
+	}
 	if($user_name=="")
 	{
 		header("Location: /DBFinalProject/register_page.php?err_msg=usernamefail");
@@ -48,17 +48,17 @@
 		header("Location: /DBFinalProject/register_page.php?err_msg=passwordfail");
 		die();
 	}
-	else if (mb_strlen($get_clean_username,"UTF-8")>20)
+	else if (mb_strlen($user_name,"UTF-8")>20)
 	{
 		header("Location: /DBFinalProject/register_page.php?err_msg=usernametoolong");
 		die();
 	}
-	else if (mb_strlen($get_clean_account,"UTF-8")>20)
+	else if (mb_strlen($account,"UTF-8")>20)
 	{
 		header("Location: /DBFinalProject/register_page.php?err_msg=accounttoolong");
 		die();
 	}
-	else if (mb_strlen($get_clean_password,"UTF-8")>20)
+	else if (mb_strlen($password,"UTF-8")>20)
 	{
 		header("Location: /DBFinalProject/register_page.php?err_msg=passwordtoolong");
 		die();
@@ -82,7 +82,7 @@
 			die();
 		}
 	}
-	mysqli_query($conn,"INSERT INTO `user`(`user_name`, `account`, `password`, `user_authority`, `last_login_time`, `board_name`, `login_ip`, `last_login_ip`, `session_id`) VALUES ('$get_clean_username', '$get_clean_account', '$get_clean_password', 'C', NULL, NULL, NULL, NULL, NULL)");
+	mysqli_query($conn,"INSERT INTO `user`(`user_name`, `account`, `password`, `user_authority`, `last_login_time`, `board_name`, `login_ip`, `last_login_ip`, `session_id`) VALUES ('$username', '$account', '$password', 'C', NULL, NULL, NULL, NULL, NULL)");
 	mysqli_close($conn);
 	header("Location: /DBFinalProject/login_page.php?account='$account'");
 	die();
