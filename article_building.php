@@ -56,7 +56,7 @@
 			$user_account = $row[1];
 			$login = true;
 			echo '<a id="logout_page_link" href="/DBFinalProject/logout.php"><img src="logout.png" border="0" alt="登出" width="10%" height="10%" style="position:absolute;left:66%;top:3%;"></a>';
-			echo '<a id="reply_link" href="/DBFinalProject/post_page.php?building_ID='.$building_ID.'"><img src="reply.png" border="0" alt="回覆文章" width="10%" height="10%" style="position:absolute;left:76%;top:3%;"></a>';
+			echo '<a id="reply_link" href="/DBFinalProject/post_page.php?building_ID='.$building_ID.'"><img src="reply.png" border="0" alt="回覆文章" width="10%" height="10%" style="position:absolute;left:74.5%;top:3%;"></a>';
 		}
 		$query->close();
 	}
@@ -72,7 +72,7 @@
 		echo '<a id="reply_link" href="/DBFinalProject/board.php?board_name='.$board_name.'"><img src="go_board.png" border="0" alt="回到版上" width="10%" height="10%" style="position:absolute;left:86%;top:3%;"></a>';
 	}
     //
-    echo '<div style="border-width:3px;border-style:groove;border-color:#FFAC55;padding:3px;width:12%;">';
+    echo '<div style="border-width:5px;border-style:groove;border-color:#FFAC55;padding:3px;width:25%;">';
     echo '<h1 id="article_building_title">'.$title.'</h1>';
     echo '</div>';
 	echo '<h5 id="create_time">創建時間:'.$create_time.'</h5>';
@@ -109,10 +109,13 @@
 		$temp->close();
 		echo '<section calss="like_dislike">';
 			echo '<p>';
-				echo '推:'.$like_count.$space.' 噓:'.$dislike_count.$space;
-				echo '<a href="/DBFinalProject/like.php?article_ID='.$article_ID.'"><img src="推.png" border="0" alt="推" width="5%" height="5%" style="position:absolute;left:7%;top:42%;"></a>';
+                echo '推:'.$like_count.$space.' 噓:'.$dislike_count.$space;
+                echo '<a href="/DBFinalProject/like.php?article_ID='.$article_ID.'">推</a>';
 				echo $space.$space;
-				echo '<a href="/DBFinalProject/dislike.php?article_ID='.$article_ID.'"><img src="噓.png" border="0" alt="噓" width="5%" height="5%" style="position:absolute;left:12%;top:42%;"></a>';
+				echo '<a href="/DBFinalProject/dislike.php?article_ID='.$article_ID.'">噓他</a>';
+				//echo '<a href="/DBFinalProject/like.php?article_ID='.$article_ID.'"><img src="推.png" border="0" alt="推" width="5%" height="5%" style="position:absolute;left:7%;top:42%;"></a>';
+				//echo $space.$space;
+				//echo '<a href="/DBFinalProject/dislike.php?article_ID='.$article_ID.'"><img src="噓.png" border="0" alt="噓" width="5%" height="5%" style="position:absolute;left:12%;top:42%;"></a>';
 			echo '</p>';
 		echo '</section>';
 		// article content
