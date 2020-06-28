@@ -94,7 +94,35 @@
 		if($account==$user_account)
 			echo '<a class="edit_link" href="/DBFinalProject/edit_page.php?building_ID='.$building_ID.'&article_ID='.$article_ID.'">編輯</a>';
 		echo '</p>';
+		echo '<section class="article_header">';
+		// like dislike
+		$temp=$conn->query('select count(type) from like_dislike where article_ID='.$article_ID.' and type=true');
+		$like_count = $temp->fetch_row();
+		$like_count = $like_count[0];
+		$temp->close();
+		$temp=$conn->query('select count(type) from like_dislike where article_ID='.$article_ID.' and type=false');
+		$dislike_count = $temp->fetch_row();
+		$dislike_count = $dislike_count[0];
+		$temp->close();
+		echo '<section calss="like_dislike">';
+			echo '<p>';
+				echo '推:'.$like_count.$space.' 噓:'.$dislike_count.$space;
+				echo '<a href="/DBFinalProject/like.php?article_ID='.$article_ID.'">推</a>';
+				echo $space.$space;
+				echo '<a href="/DBFinalProject/dislike.php?article_ID='.$article_ID.'">噓他</a>';
+			echo '</p>';
+		echo '</section>';
+		// article content
 		echo '<textarea class="article_content" cols= "60" rows="10" disabled>'.$content.'</textarea>';
+		// comment
+		$result = $conn->query('select user_name,content,post_time from comment natural join user where article_ID='.$article_ID.' order by post_time');
+		echo '<br><select class="comment_box" size=3 style="width:445">';
+			while($comment = $result->fetch_row()){
+				echo '<option>';
+					echo $comment[0].': '.$comment[1];
+				echo '</option>';
+			}
+			echo '</select>';
 		echo '</section>';
 		$floor_count++;
 	}

@@ -90,6 +90,9 @@ input[type="text"], input[type="password"] {
 		else if($_GET['err_msg']=='leave_comment_without_login'){
 			echo "<script type='text/javascript'>alert('請先登入後再留言');</script>";
 		}
+		else if($_GET['err_msg']=='like_dislike_without_login'){
+			echo "<script type='text/javascript'>alert('請先登入後再推噓');</script>";
+		}
 	}
 ?>
 <a id="main_page_link" href="/DBFinalProject/index.php"><img src="go_index.png" border="0" alt="回到主頁" width="10%" height="10%" style="position:absolute;left:38%;top:70%;"></a>
