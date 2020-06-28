@@ -53,7 +53,7 @@
 		$result = $conn->query('select board_name from board where board_name="'.$board_name.'"');
 		if($row = $result->fetch_row()){
 			if(isset($_SESSION['last view board'])&&isset($_SESSION['last view page'])){
-				echo '<a id="board_link" href="/DBFinalProject/board.php?board_name='.$board_name.'&page='.$_SESSION['last view page'].'">取消</a>';
+				echo '<a id="board_link" href="/DBFinalProject/board.php?board_name='.$board_name.'&page='.$_SESSION['last view page'].'"><input type="button" value="取消" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 			}
 			else{
 				echo '<a id="board_link" href="/DBFinalProject/board.php?board_name='.$board_name.'"><input type="button" value="取消" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
