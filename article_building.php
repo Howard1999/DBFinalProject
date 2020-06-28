@@ -46,7 +46,7 @@
 	$query->close();
 	// header
 	echo '<header id="header">';
-	echo '<a id="main_page_link" href="/DBFinalProject/index.php"><img src="go_index.png" border="0" alt="回到主頁" width="10%" height="10%" style="position:absolute;left:60%;top:5%;"></a>';
+	echo '<a id="main_page_link" href="/DBFinalProject/index.php"><img src="go_index.png" border="0" alt="回到主頁" width="10%" height="10%" style="position:absolute;left:56%;top:3%;"></a>';
 	// check login
 	$login = false;
 	if(isset($_SESSION['session_id'])){
@@ -55,24 +55,24 @@
 			$user_name = $row[0];
 			$user_account = $row[1];
 			$login = true;
-			echo '<a id="logout_page_link" href="/DBFinalProject/logout.php"><img src="logout.png" border="0" alt="登出" width="10%" height="10%" style="position:absolute;left:70%;top:5%;"></a>';
-			echo '<a id="reply_link" href="/DBFinalProject/post_page.php?building_ID='.$building_ID.'"><img src="reply.png" border="0" alt="回覆文章" width="10%" height="10%" style="position:absolute;left:76%;top:5%;"></a>';
+			echo '<a id="logout_page_link" href="/DBFinalProject/logout.php"><img src="logout.png" border="0" alt="登出" width="10%" height="10%" style="position:absolute;left:66%;top:3%;"></a>';
+			echo '<a id="reply_link" href="/DBFinalProject/post_page.php?building_ID='.$building_ID.'"><img src="reply.png" border="0" alt="回覆文章" width="10%" height="10%" style="position:absolute;left:76%;top:3%;"></a>';
 		}
 		$query->close();
 	}
 	if(!$login){
-		echo '<a id="login_page_link" href="/DBFinalProject/login_page.php"><img src="login.png" border="0" alt="登入" width="10%" height="10%" style="position:absolute;left:76%;top:5%;"></a>';
-		echo '<a id="register_page_link" href="/DBFinalProject/register_page.php"><img src="go_register.png" border="0" alt="前往註冊" width="10%" height="10%" style="position:absolute;left:82%;top:5%;"></a>';
+		echo '<a id="login_page_link" href="/DBFinalProject/login_page.php"><img src="login.png" border="0" alt="登入" width="10%" height="10%" style="position:absolute;left:7%;top:3%;"></a>';
+		echo '<a id="register_page_link" href="/DBFinalProject/register_page.php"><img src="go_register.png" border="0" alt="前往註冊" width="10%" height="10%" style="position:absolute;left:8%;top:3%;"></a>';
 	}
 	
 	if(isset($_SESSION['last view board'])&&isset($_SESSION['last view page'])&&isset($_SESSION['order_key'])&&isset($_SESSION['order_type'])){
-		echo '<a id="board_link" href="/DBFinalProject/board.php?board_name='.$_SESSION['last view board'].'&page='.$_SESSION['last view page'].'&order_key='.$_SESSION['order_key'].'&order_type='.$_SESSION['order_type'].'">回到版上</a>';
+		echo '<a id="board_link" href="/DBFinalProject/board.php?board_name='.$_SESSION['last view board'].'&page='.$_SESSION['last view page'].'&order_key='.$_SESSION['order_key'].'&order_type='.$_SESSION['order_type'].'"><img src="go_board.png" border="0" alt="回到版上" width="10%" height="10%" style="position:absolute;left:86%;top:3%;"></a>';
 	}
 	else{
-		echo '<a id="reply_link" href="/DBFinalProject/board.php?board_name='.$board_name.'"><img src="go_board.png" border="0" alt="回到版上" width="10%" height="10%" style="position:absolute;left:86%;top:5%;"></a>';
+		echo '<a id="reply_link" href="/DBFinalProject/board.php?board_name='.$board_name.'"><img src="go_board.png" border="0" alt="回到版上" width="10%" height="10%" style="position:absolute;left:86%;top:3%;"></a>';
 	}
     //
-    echo '<div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">';
+    echo '<div style="border-width:3px;border-style:groove;border-color:#FFAC55;padding:3px;width:12%;">';
     echo '<h1 id="article_building_title">'.$title.'</h1>';
     echo '</div>';
 	echo '<h5 id="create_time">創建時間:'.$create_time.'</h5>';
@@ -110,9 +110,9 @@
 		echo '<section calss="like_dislike">';
 			echo '<p>';
 				echo '推:'.$like_count.$space.' 噓:'.$dislike_count.$space;
-				echo '<a href="/DBFinalProject/like.php?article_ID='.$article_ID.'"><img src="推.png" border="0" alt="推" width="10%" height="10%" style="position:absolute;left:15%;top:42%;"></a>';
+				echo '<a href="/DBFinalProject/like.php?article_ID='.$article_ID.'"><img src="推.png" border="0" alt="推" width="5%" height="5%" style="position:absolute;left:7%;top:42%;"></a>';
 				echo $space.$space;
-				echo '<a href="/DBFinalProject/dislike.php?article_ID='.$article_ID.'"><img src="噓.png" border="0" alt="噓" width="10%" height="10%" style="position:absolute;left:21%;top:42%;"></a>';
+				echo '<a href="/DBFinalProject/dislike.php?article_ID='.$article_ID.'"><img src="噓.png" border="0" alt="噓" width="5%" height="5%" style="position:absolute;left:12%;top:42%;"></a>';
 			echo '</p>';
 		echo '</section>';
 		// article content
