@@ -17,15 +17,32 @@ body {
 	background-position: center;
 }
 #login_page_link{
-	position: absolute;
-	top: 0;
-	left: 0;
+	display:inline-block;
 }
+#register_page_link{
+	display:inline-block;
+}
+#logout_link{
+	display:inline-block;
+}
+#profile_link{
+	display:inline-block;
+}
+#get_board_edit{
+	display:inline-block;
+}
+#board{
+	display:inline-block;
+	width: 80px;
+    height: 20px;
+	margin: 2em;
+}
+
 </style>
 <body>
 
 <div style="position:relative;">
-        <img class="photo1" src="world.png" alt="" width="100%" height="15%">
+        <img id="photo1" src="world.png" alt="" width="100%" height="15%">
 </div>
 <pre>
 <?php
@@ -54,9 +71,9 @@ body {
 		if($stmt->fetch())
 		{
 			$stmt->close();
-			echo '<h1>hi '.$user.'</h1><br><br>';
-			echo '<a id="logout_link" href="/DBFinalProject/logout.php"><button>登出</button></a><br><br>';
-			echo '<a id="profile_link" href="/DBFinalProject/profile_page.php"><button>修改個人資料</button></a><br><br>';
+			echo '<p>hi '.$user.'</p><br><br>';
+			echo '<a id="logout_link" href="/DBFinalProject/logout.php"><input type="button" value="登出" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a><br><br>';
+			echo '<a id="profile_link" href="/DBFinalProject/profile_page.php"><input type="button" value="修改個人資料" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a><br><br>';
 			$login = true;
 			// check authority button
 			$result = $conn->query('select user_name from user where session_id="'.$_SESSION['session_id'].'" and user_authority = "A"');
@@ -64,15 +81,16 @@ body {
 			{
 				$user_name = $row[0];
 				$is_admin = true;
-				echo '<a id="get_board_edit" href="/DBFinalProject/board_manage.php"><button>管理版</button></a><br><br>';
+				echo '<a id="get_board_edit" href="/DBFinalProject/board_manage.php"><input type="button" value="管理版" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a><br><br>';
 			}
 			$result->close();
 		}
 		
 	}
-	if(!$login){
-		echo '<a id="login_page_link" href="/DBFinalProject/login_page.php"><button>登入</button></a><br><br>';
-		echo '<a id="register_page_link" href="/DBFinalProject/register_page.php"><button>前往註冊</button></a><br><br>';
+	if(!$login)
+	{
+		echo '<a id="login_page_link" href="/DBFinalProject/login_page.php"><input type="button" value="登入" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a><br><br>';
+		echo '<a id="register_page_link" href="/DBFinalProject/register_page.php"><input type="button" value="前往註冊" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a><br><br>';
 	}
 	echo '<br>';
 	// genarate board list
@@ -80,14 +98,14 @@ body {
 	$num=0;
 	while($row=$result->fetch_row())
 	{
-		if($num==3)
+		if($num==5)
 		{
 			$num=0;
 			echo '<br><br>';
 		}
 		$board_name = $row[0];
 		$popularity = $row[1];
-		echo '<a href="/DBFinalProject/board.php?board_name='.$board_name.'"><button>'.$board_name." 人氣: ".$popularity.'</button></a>';
+		echo '<a id="board" href="/DBFinalProject/board.php?board_name='.$board_name.'"><input type="button" value="'.$board_name." 人氣: ".$popularity.'" style="width:120px;height:40px;border:2px #9999FF groove;background-color:#21C592 color:#0C4A5F;"></a>';
 		echo '   ';
 		$num+=1;
 	}
@@ -95,5 +113,6 @@ body {
 	$conn->close();
 ?>
 </pre>
+
 </body>
 </html>
