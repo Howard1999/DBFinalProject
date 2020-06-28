@@ -51,9 +51,8 @@ body {
 		$stmt->bind_param("s",$_SESSION['session_id']);
 		$stmt->execute();
 		$stmt->bind_result($user);
-		if($stmt->fetch())
-		{
-			echo '<p>hi '.$user.'</p><br><br>';
+		if($stmt->fetch()){
+			echo '<h1>hi '.$user.'</h1><br><br>';
 			echo '<a id="logout_link" href="/DBFinalProject/logout.php"><button>登出</button></a><br><br>';
 			echo '<a id="profile_link" href="/DBFinalProject/profile_page.php"><button>修改個人資料</button></a><br><br>';
 			$login = true;
