@@ -82,10 +82,17 @@
 			die();
 		}
 	}
-	mysqli_query($conn,"INSERT INTO `user`(`user_name`, `account`, `password`, `user_authority`, `last_login_time`, `board_name`, `login_ip`, `last_login_ip`, `session_id`) VALUES ('$username', '$account', '$password', 'C', NULL, NULL, NULL, NULL, NULL)");
-	mysqli_close($conn);
-	header("Location: /DBFinalProject/login_page.php?account='$account'");
-	die();
+	if(mysqli_query($conn,"INSERT INTO `user`(`user_name`, `account`, `password`, `user_authority`, `last_login_time`, `board_name`, `login_ip`, `last_login_ip`, `session_id`) VALUES ('$user_name', '$account', '$password', 'C', NULL, NULL, NULL, NULL, NULL)"))
+	{
+		mysqli_close($conn);
+		header("Location: /DBFinalProject/login_page.php?account='$account'");
+		die();
+	}
+	else
+	{
+		header("Location: /DBFinalProject/register_page.php?err_msg=final_fail");
+		die();
+	}
 ?>
 </body> 
 </html> 
