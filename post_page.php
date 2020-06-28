@@ -99,7 +99,7 @@ body {
 		echo '<label id="content_label" class="content" for="content">內容 :</label><br>';
 	}
 	else if(isset($_GET['building_ID'])){
-		echo '<div style="text-align:center">';
+		
 		$building_ID = mysqli_real_escape_string($conn,$_GET["building_ID"]);
 		// check building_ID is exist
 		$query = $conn->query('select title,create_time from article_building where building_ID="'.$building_ID.'"');
@@ -118,7 +118,8 @@ body {
 		echo '<h5 id="create_time">創建時間:'.$create_time.'</h5>';
 		echo '</header>';
 		// header end
-		
+		echo '</div>';
+		echo '<div style="text-align:center">';
 		echo '<title>回覆</title>';
 		echo '<form id="post_area" action="post.php" method="post">';
 		echo '<input name="building_ID" type="hidden" value="'.$_GET['building_ID'].'">';
