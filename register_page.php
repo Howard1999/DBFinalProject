@@ -121,6 +121,10 @@ input[type="text"], input[type="password"] {
 		{
 			echo "<script type='text/javascript'>alert('密碼上限20字，請重新輸入');</script>";
 		}
+		else if ($_GET['err_msg']=="final_fail")
+		{
+			echo "<script type='text/javascript'>alert('帳號註冊失敗!');</script>";
+		}
 	}
 ?>
 </body>
