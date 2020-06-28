@@ -1,7 +1,35 @@
+<!doctype html>
+<html>
+<style type="text/css">
+<!--set no rolling-->
+#main {
+  max-width: 600px;
+  margin: 0 auto; 
+}
+body {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	background: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pf-misctexture01-beer-000_5.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=c1552a7bdc2ea7b6e17d8d0d893c15be");
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+}
+#logout_link{
+	display:inline-block;
+}
+#profile_link{
+	display:inline-block;
+}
+body{font-family: arial,"Microsoft JhengHei","微軟正黑體",sans-serif !important;}
+</style>
+
+
 <title>個人資料</title>
 <header>
-<a id="logout_link" href="/DBFinalProject/logout.php"><button>登出</button></a>
-<a id="profile_link" href="/DBFinalProject/index.php"><button>回到主畫面</button>
+<a id="logout_link" href="/DBFinalProject/logout.php"><input type="button" value="登出" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>
+<a id="profile_link" href="/DBFinalProject/index.php"><input type="button" value="回到主畫面" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;">
 </a><h1 align="center">個人資料</h1>
 </header>
 <!--hidden form-->
@@ -10,7 +38,7 @@
 </form>
 <!--hidden form-->
 
-
+<div style="border-width:3px;color:#4A525B;border-style:solid;background-color:#E9E1BD;border-color:black;padding:3px;">
 <table style="width:50%" align="center">
 	<tr><th>屬性</th><th>值</th>
 <?php
@@ -48,7 +76,7 @@
 		echo '<tr>';
 			echo '<td align="center">使用者名稱</td>';
 			echo '<td align="center"><input id=user_name type="text" value="'.$row[0].'" align="center"></td>';
-			echo '<td><button onclick="rename()">rename</button></td>';
+			echo '<td><button onclick="rename()" style="width:120px;height:40px; color:white; background-color:#05143D;">rename</button></td>';
 		echo '</tr>';
 		
 		echo '<tr>';
@@ -128,6 +156,7 @@
 		}
 	}
 ?>
+</div>
 <style>
 	input { 
 		text-align: center; 
@@ -143,3 +172,4 @@
 		form.submit();
 	}
 </script>
+<html>
