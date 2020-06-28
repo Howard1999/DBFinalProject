@@ -135,11 +135,14 @@ body{font-family: arial,"Microsoft JhengHei","微軟正黑體",sans-serif !impor
 	}
 	
 	//
+	echo '<div align="center">';
 	echo '<h1 id="board_name">'.$board.'</h1>';
 	echo '<p id="popularity">人氣:'.$popularity.'</p>';
 	echo '</header>';
+	echo '</div>';
 	// header end
 	// sort keys
+	echo '<div align="center">';
 	echo '<form id="order" action="board.php" method="get">';
 	echo '<input type=hidden name="board_name" value="'.$board.'">';
 	echo '<input type=hidden name="page" value="'.$page.'">';
@@ -153,8 +156,9 @@ body{font-family: arial,"Microsoft JhengHei","微軟正黑體",sans-serif !impor
 				<option value="asc" style="color:black;font-weight:black">升順</option>
 				<option value="desc" style="color:black;font-weight:black">降順</option>
 			</select>
-			<input id="order" type="submit" value="排序" style="width:60px;height:40px;border:2px #000000 solid;background-color:white;">
+			<input id="order" type="submit" value="排序" style="width:60px;height:20px;border:2px #000000 solid;background-color:white;">
 		</form>
+		</div>
 	<?php
 	//genarate article building link
 	$order_key = 'title';
@@ -170,20 +174,24 @@ body{font-family: arial,"Microsoft JhengHei","微軟正黑體",sans-serif !impor
 	$stmt->bind_param("sii",$board,$article_building_per_page,$offset);
 	$stmt->execute();
 	$stmt->bind_result($building_ID,$title,$user_name,$create_time);
-	echo '<section id="article_building_list">';
+	
+	echo '<section id="article_building_list" style="margin:15px;">';
 	while($stmt->fetch()){
 		// an article building section
-		echo '<section class="article_building">';
-		echo '<a class="building_title_link" href="/DBFinalProject/article_building.php?building_ID='.$building_ID.'"><input type="button" value="'.$title.'" style="width:120px;height:40px; color:#CEA107; background-color:#05143D;"><br></a>';
+		echo '<div align="center">';
+		echo '<section class="article_building"  style="background-color:gray;width:700px;border:10px;">';
+		echo '<a class="building_title_link" href="/DBFinalProject/article_building.php?building_ID='.$building_ID.'"><input type="button" value="'.$title.'" style="width:400px;height:40px; color:#CEA107; background-color:#05143D;"><br></a>';
 		echo '<p class="building_author">作者:'.$user_name.'</p>';
 		echo '<p class="building_create_time">發布時間:'.$create_time.'</p>';
 		echo '</section>';
+		echo '</div>';
 	}
 	echo '</section>';
 	$stmt->close();
+	echo '<div align="center">';
 	// if there are no any page then show a post link
 	if($total_page==0){
-		echo '<a id="no_article_prompt" href="/DBFinalProject/post_page.php?board_name='.$board.'"><input type="button" value="這裡還沒有任何文章..發佈第一篇" style="width:120px;height:40px; color:#CEA107; background-color:#05143D;"><br></a>';
+		echo '<a id="no_article_prompt" href="/DBFinalProject/post_page.php?board_name='.$board.'"><input type="button" value="這裡還沒有任何文章..發佈第一篇" style="width:400px;height:40px; color:#CEA107; background-color:#05143D;"><br></a>';
 	}//other wise give user previous, next page link and show where is the page now
 	else{
 		echo '<section id="page_footer">';
@@ -213,6 +221,7 @@ body{font-family: arial,"Microsoft JhengHei","微軟正黑體",sans-serif !impor
 		}
 		echo '</section>';
 	}
+	echo '</	div>';
 	$conn->close();
 ?>
 <style>
