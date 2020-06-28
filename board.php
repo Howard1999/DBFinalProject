@@ -171,12 +171,19 @@ body{font-family: arial,"Microsoft JhengHei","微軟正黑體",sans-serif !impor
 	$stmt->execute();
 	$stmt->bind_result($building_ID,$title,$user_name,$create_time);
 	echo '<section id="article_building_list">';
-	while($stmt->fetch()){
+	while($stmt->fetch())
+	{
 		// an article building section
 		echo '<section class="article_building">';
-		echo '<a class="building_title_link" href="/DBFinalProject/article_building.php?building_ID='.$building_ID.'"><input type="button" value="'.$title.'" style="width:120px;height:40px; color:#CEA107; background-color:#05143D;"><br></a>';
+		echo '<a class="building_title_link" href="article_building.php?building_ID='.$building_ID.'"><input type="button" value="'.$title.'" style="width:120px;height:40px; color:#CEA107; background-color:#05143D;"><br></a>';
+	?>
+<div style="width:300px;color:#4A525B;border-style:solid;background-color:#E9E1BD;border-color:black;padding:3px;">
+	<?php
 		echo '<p class="building_author">作者:'.$user_name.'</p>';
 		echo '<p class="building_create_time">發布時間:'.$create_time.'</p>';
+	?>
+</div>
+	<?php
 		echo '</section>';
 	}
 	echo '</section>';
