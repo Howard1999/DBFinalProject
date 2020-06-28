@@ -1,3 +1,8 @@
+<body>
+<div style="position:relative;">
+        <img class="photo1" src="world.png" alt="" width="100%" height="15%">
+</div>
+</body>
 <?php
 	session_start();
 	
@@ -41,7 +46,7 @@
 	$query->close();
 	// header
 	echo '<header id="header">';
-	echo '<a id="main_page_link" href="/DBFinalProject/index.php">回到主頁</a>';
+	echo '<a id="main_page_link" href="/DBFinalProject/index.php"><img src="go_index.png" border="0" alt="回到主頁" width="10%" height="10%" style="position:absolute;left:75%;top:14%;"></a>';
 	// check login
 	$login = false;
 	if(isset($_SESSION['session_id'])){
@@ -50,21 +55,21 @@
 			$user_name = $row[0];
 			$user_account = $row[1];
 			$login = true;
-			echo '<a id="logout_page_link" href="/DBFinalProject/logout.php">登出</a>';
-			echo '<a id="reply_link" href="/DBFinalProject/post_page.php?building_ID='.$building_ID.'">回覆文章</a>';
+			echo '<a id="logout_page_link" href="/DBFinalProject/logout.php"><img src="logout.png" border="0" alt="登出" width="10%" height="10%" style="position:absolute;left:80%;top:14%;"></a>';
+			echo '<a id="reply_link" href="/DBFinalProject/post_page.php?building_ID='.$building_ID.'"><img src="reply.png" border="0" alt="回覆文章" width="10%" height="10%" style="position:absolute;left:83%;top:14%;"></a>';
 		}
 		$query->close();
 	}
 	if(!$login){
-		echo '<a id="login_page_link" href="/DBFinalProject/login_page.php">登入</a>';
-		echo '<a id="register_page_link" href="/DBFinalProject/register_page.php">前往註冊</a>';
+		echo '<a id="login_page_link" href="/DBFinalProject/login_page.php"><img src="login.png" border="0" alt="登入" width="10%" height="10%" style="position:absolute;left:80%;top:14%;"></a>';
+		echo '<a id="register_page_link" href="/DBFinalProject/register_page.php"><img src="go_register.png" border="0" alt="前往註冊" width="10%" height="10%" style="position:absolute;left:83%;top:14%;"></a>';
 	}
 	
 	if(isset($_SESSION['last view board'])&&isset($_SESSION['last view page'])&&isset($_SESSION['order_key'])&&isset($_SESSION['order_type'])){
 		echo '<a id="board_link" href="/DBFinalProject/board.php?board_name='.$_SESSION['last view board'].'&page='.$_SESSION['last view page'].'&order_key='.$_SESSION['order_key'].'&order_type='.$_SESSION['order_type'].'">回到版上</a>';
 	}
 	else{
-		echo '<a id="reply_link" href="/DBFinalProject/board.php?board_name='.$board_name.'">回到版上</a>';
+		echo '<a id="reply_link" href="/DBFinalProject/board.php?board_name='.$board_name.'"><img src="go_board.png" border="0" alt="回到版上" width="10%" height="10%" style="position:absolute;left:88%;top:14%;"></a>';
 	}
 	//
 	echo '<h1 id="article_building_title">'.$title.'</h1>';
@@ -85,32 +90,12 @@
 		$space = '&nbsp;&nbsp;&nbsp;&nbsp';
 		// an article section
 		echo '<section class="article">';
-		// article header
-		echo '<section class="article_header">';
-		echo '<p>'.$floor_count.'樓'.$space.'作者: '.$author.$space.'最後編輯: '.$last_edit.$space;
+		echo '<p class="article_header">'.$floor_count.'樓'.$space.'作者: '.$author.$space.'最後編輯: '.$last_edit.$space;
 		if($account==$user_account)
 			echo '<a class="edit_link" href="/DBFinalProject/edit_page.php?building_ID='.$building_ID.'&article_ID='.$article_ID.'">編輯</a>';
 		echo '</p>';
-		echo '<section class="article_header">';
-		// article content
 		echo '<textarea class="article_content" cols= "60" rows="10" disabled>'.$content.'</textarea>';
-		// like or dislike
-		// comment
-		$result = $conn->query('select user_name,content,post_time from comment natural join user where article_ID='.$article_ID.' order by post_time');
-		echo '<br><select class="comment_box" size=3 style="width:445">';
-			while($comment = $result->fetch_row()){
-				echo '<option>';
-					echo $comment[0].': '.$comment[1];
-				echo '</option>';
-			}
-			echo '</select>';
 		echo '</section>';
-		// input comment
-		echo '<form calss="comment_input" action="leave_comment.php" method="post">';
-			echo '<input type="hidden" name="article_ID" value="'.$article_ID.'">';
-			echo '<input type="text" name="comment" placeholder="留言">';
-			echo '<input type="submit" value="送出">';
-		echo '</form>';
 		$floor_count++;
 	}
 	echo '</section>';
@@ -118,8 +103,23 @@
 
 	$conn->close();
 ?>
-<style>
-	.article_content{
-		resize:none;
-	}
+
+<style type="text/css">
+body {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	background: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pf-misctexture01-beer-000_5.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=c1552a7bdc2ea7b6e17d8d0d893c15be");
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+}
+textarea {
+	resize:none;
+	text-align: center;
+}
+.article_content{
+	resize:none;
+}
 </style>
