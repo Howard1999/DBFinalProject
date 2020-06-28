@@ -16,8 +16,10 @@ body {
 	background-attachment: fixed;
 	background-position: center;
 }
-login_page_link{
-	margin-right:200px;
+#login_page_link{
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 </style>
 <body>
@@ -49,11 +51,21 @@ login_page_link{
 		$stmt->bind_param("s",$_SESSION['session_id']);
 		$stmt->execute();
 		$stmt->bind_result($user);
-		if($stmt->fetch()){
+		if($stmt->fetch())
+		{
 			echo '<p>hi '.$user.'</p><br><br>';
 			echo '<a id="logout_link" href="/DBFinalProject/logout.php"><button>登出</button></a><br><br>';
 			echo '<a id="profile_link" href="/DBFinalProject/profile_page.php"><button>修改個人資料</button></a><br><br>';
 			$login = true;
+			// check authority button
+			$result = $conn->query('select user_name from user where session_id="'.$_SESSION['session_id'].'" and user_authority = "A"');
+			if($row = $result->fetch_row())
+			{
+				$user_name = $row[0];
+				$is_admin = true;
+				echo '<a id="get_board_edit" href="/DBFinalProject/board_manage.php"><button>管理版</button></a><br><br>';
+			}
+			$result->close();
 		}
 		$stmt->close();
 	}
