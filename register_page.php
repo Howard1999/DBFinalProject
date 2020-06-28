@@ -29,6 +29,13 @@ body {
 	font-size: 25px;
 	margin: 20px;
 }
+.login table {
+	display: inline-block;
+	width: 90%;
+}
+.a {
+	width: 70%;
+}
 input[type="text"], input[type="password"] {
 	font-size: 16px;
 	font-family: "微軟正黑體", sans-serif;
@@ -42,7 +49,7 @@ input[type="text"], input[type="password"] {
 	border: 0;
 	padding: 6px 12px;
 	margin: 10px auto;
-	width: 230px;
+	width: 80%;
 	font-size: 20px;
 	font-family: "微軟正黑體", sans-serif;
 	background: #fff;
@@ -66,18 +73,18 @@ input[type="text"], input[type="password"] {
         <img class="photo1" src="world.png" alt="" width="100%" height="15%">
 </div>
 	<form action="register.php" method="post" class="login">
-	<table border="1" width="350">
+	<table border="1">
 　	<tr>
 　	<td>使用者名稱</td>
-	<td><input type="text" name="user_name"/></td>
+	<td class="a"><input type="text" name="user_name"/></td>
 	</tr>
 	<tr>
 	<td>帳號</td>
-	<td><input type="text" name="account"/></td>
+	<td class="a"><input type="text" name="account"/></td>
 	</tr>
 	<tr>
 	<td>密碼</td>
-	<td><input type="password" name="password"/></td>
+	<td class="a"><input type="password" name="password"/></td>
 	</tr>
 	</table>
 	<input type ="submit" value="註冊">
@@ -132,4 +139,3 @@ input[type="text"], input[type="password"] {
 
 <a id="main_page_link" href="/DBFinalProject/index.php"><img src="go_index.png" border="0" alt="回到主頁" width="10%" height="10%" style="position:absolute;left:38%;top:70%;"></a>
 <a id="login_page_link" href="/DBFinalProject/login_page.php"><img src="login.png" border="0" alt="登入" width="10%" height="10%" style="position:absolute;left:53%;top:70%;"></a>
-
