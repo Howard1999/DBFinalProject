@@ -33,8 +33,8 @@ body {
 }
 #board{
 	display:inline-block;
-	width: 80px;
-    height: 20px;
+	width:250px;
+	height:20px;
 	margin: 2em;
 }
 
@@ -49,8 +49,8 @@ body {
 	session_start();
 	//connect to database
 	$servername = "127.0.0.1";
-	$username = "team1";
-	$password = "DB338HKkvRVOZzb";
+	$username = "root";
+	$password = "eb87oU7BGKxqxgSR";
 	$dbname = "team1";
 	
 	$conn = new mysqli($servername, $username, $password, $dbname);
@@ -98,14 +98,14 @@ body {
 	$num=0;
 	while($row=$result->fetch_row())
 	{
-		if($num==5)
+		if($num==4)
 		{
 			$num=0;
 			echo '<br><br>';
 		}
 		$board_name = $row[0];
 		$popularity = $row[1];
-		echo '<a id="board" href="/DBFinalProject/board.php?board_name='.$board_name.'"><input type="button" value="'.$board_name." 人氣: ".$popularity.'" style="width:120px;height:40px;border:2px #9999FF groove;background-color:#21C592 color:#0C4A5F;"></a>';
+		echo '<a id="board" href="/DBFinalProject/board.php?board_name='.$board_name.'"><input type="button" value="'.$board_name." 人氣: ".$popularity.'" style="width:300px;height:40px;border:2px #9999FF groove;background-color:#21C592 color:#0C4A5F;"></a>';
 		echo '   ';
 		$num+=1;
 	}
