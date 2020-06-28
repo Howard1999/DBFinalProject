@@ -52,7 +52,7 @@ login_page_link{
 		if($stmt->fetch()){
 			echo '<p>hi '.$user.'</p><br><br>';
 			echo '<a id="logout_link" href="/DBFinalProject/logout.php"><button>登出</button></a><br><br>';
-			echo '<a id="profile_link href="/DBFinalProject/profile_page.php"><button>修改個人資料</button></a><br><br>';
+			//echo '<a id="profile_link href="/DBFinalProject/profile_page.php"><button>修改個人資料</button></a><br><br>';
 			$login = true;
 		}
 		$stmt->close();
