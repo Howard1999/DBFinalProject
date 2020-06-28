@@ -1,3 +1,8 @@
+<body>
+<div style="position:relative;">
+        <img class="photo1" src="world.png" alt="" width="100%" height="15%">
+</div>
+</body>
 <?php
 	session_start();
 	//connect to database
@@ -32,13 +37,13 @@
 	// page link
 	echo "<title>編輯</title>";
 	echo '<header id="header">';
-	echo '<a id="main_page_link" href="/DBFinalProject/index.php">回到主頁</a>';
+	echo '<a id="main_page_link" href="/DBFinalProject/index.php"><img src="go_index.png" border="0" alt="回到主頁" width="10%" height="10%" style="position:absolute;left:66%;top:3%;"></a>';
 	$login = false;
 	if(isset($_SESSION['session_id'])){//login check
 		$result = $conn->query('select account from user where session_id ="'.$_SESSION['session_id'].'"');
 		if($row = $result->fetch_row()){
 			$account = $row[0];
-			echo '<a id="logout_link" href="/DBFinalProject/logout.php">登出</a>';
+			echo '<a id="logout_link" href="/DBFinalProject/logout.php"><img src="logout.png" border="0" alt="登出" width="10%" height="10%" style="position:absolute;left:76%;top:3%;"></a>';
 			$login = true;
 		}
 		$result->close();
@@ -56,18 +61,24 @@
 		if($row = $query->fetch_row()){
 			$title = $row[0];
 			$create_time = $row[1];
-			echo '<a id="board_link" href="/DBFinalProject/article_building.php?building_ID='.$building_ID.'">取消</a>';
+			echo '<a id="board_link" href="/DBFinalProject/article_building.php?building_ID='.$building_ID.'"><img src="cancel.png" border="0" alt="取消" width="10%" height="10%" style="position:absolute;left:86%;top:3%;"></a>';
 		}
 		else{
 			redirect();
 		}
-		$query->close();
-		echo '<h1 id="article_building_title">'.$title.'</h1>';
-		echo '<h5 id="create_time">創建時間:'.$create_time.'</h5>';
+        $query->close();
+       
+        echo '<div style="border-width:6px;border-style:ridge;border-color:#FFAC55;padding:3px;width:30%;" "text-align:center">';
+        echo '<h1 id="article_building_title">'.$title.'</h1>';
+        echo '</div>';
+        echo '<div style="text-align:center">';	
+        echo '<h5 id="create_time">創建時間:'.$create_time.'</h5>';
+        echo '</div>';
 		echo '</header>';
 		// header end
 		
-		// check article_ID is exist and is belong user and building
+        // check article_ID is exist and is belong user and building
+        echo '<div style="text-align:center">';	
 		$query = $conn->query('select content,account from article where article_ID='.$article_ID.' and building_ID='.$building_ID);
 		if($row = $query->fetch_row()){
 			$content = $row[0];
@@ -101,15 +112,28 @@
 		else{
 			echo '<label id="content_label" class="content" for="content">回覆 :</label><br>';
 		}
-		echo '<textarea id="content_input" class="content" name="content" cols="60" rows="10">'.$content.'</textarea>';
+        echo '<textarea id="content_input" class="content" name="content" cols="60" rows="10">'.$content.'</textarea>';
+        echo '<br>';
 		echo '<input id="submit_button" type="submit" value="更新">';
 	}
 	else{
 		redirect();
-	}
+    }
+    echo '</div>';
 ?>
-<style>
-	textarea{
-		resize:none;
-	}
+
+<style type="text/css">
+body {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	background: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pf-misctexture01-beer-000_5.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=c1552a7bdc2ea7b6e17d8d0d893c15be");
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+}
+textarea {
+	resize:none;
+}
 </style>
