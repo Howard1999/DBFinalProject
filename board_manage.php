@@ -1,5 +1,9 @@
 <title>Board Manage</title>
-<h1 align="center">Board Manage</h1>
+<header>
+<a id="logout_link" href="/DBFinalProject/logout.php"><button>登出</button></a>
+<a id="profile_link" href="/DBFinalProject/index.php"><button>回到主畫面</button>
+</a><h1 align="center">Board Manage</h1>
+</header>
 
 <form id="board_create_table" action="create_board.php" method="post" align="center">
 	<label for="board_name">create new board :</label>
