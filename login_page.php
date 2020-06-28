@@ -64,7 +64,7 @@ input[type="text"], input[type="password"] {
 </div>
 
 <form action="login.php" method="post" class="login">
-	<label id="account_label" class="account" for="account">account :<img src="account.png" alt="account" width="30px" height="30px" style="position:absolute;left:28%;top:7.5%;"></label><br>
+	<label id="account_label" class="account" for="account">account :</label><br>
 	<?php
 		echo "<input id=\"account class=\"account\" input\" type=\"text\" name=\"account\" ";
 		if(isset($_GET['account'])){
@@ -72,7 +72,7 @@ input[type="text"], input[type="password"] {
 		}
 		echo "><br>";
 	?>
-	<label id="password_label" class="password" for="password">password :<img src="password.png" alt="password" width="22px" height="32px" style="position:absolute;left:27%;top:33%;"></label><br>
+	<label id="password_label" class="password" for="password">password :</label><br>
     <input id="password_input" class="password" type="password" name="password"><br>
     <input id="submit_button" type="submit" value="登入">
 </form>
