@@ -28,6 +28,7 @@
 	}
 	// header start 
 	// page link
+	echo '<div style="text-align:center">';
 	echo '<header id="header">';
 	echo '<a id="main_page_link" href="/DBFinalProject/index.php"><input type="button" value="回到主頁" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 	$login = false;
@@ -62,16 +63,16 @@
 			redirect();
 		}
 		$result->close();
-?>
-<div style="text-align:center">	
-<?php
-		echo '<h1 id="board_name">'.$board_name.'</h1>';
-		echo '</header>';
-		// header end
-?>
-</div>
-<div style="text-align:center">	
-<?php	
+		?>	
+		<?php
+				echo '<h1 id="board_name">'.$board_name.'</h1>';
+				echo '</header>';
+				echo '</div>';
+				// header end
+		?>
+		
+		<div style="text-align:center">	
+		<?php	
 		echo '<title>發文</title>';
 		echo '<form id="post_area" action="post.php" method="post">';
 		echo '<input name="board_name" type="hidden" value="'.$_GET['board_name'].'">';
@@ -80,6 +81,7 @@
 		echo '<label id="content_label" class="content" for="content">內容 :</label><br>';
 	}
 	else if(isset($_GET['building_ID'])){
+		echo '<div style="text-align:center">';
 		$building_ID = mysqli_real_escape_string($conn,$_GET["building_ID"]);
 		// check building_ID is exist
 		$query = $conn->query('select title,create_time from article_building where building_ID="'.$building_ID.'"');
