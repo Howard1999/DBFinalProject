@@ -104,7 +104,7 @@
 		$conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
 		$success = true;
 		// get article owner's account
-		$result = $conn->query('select account from article where article_ID='.$article_ID.' and building_ID'=$building_ID);
+		$result = $conn->query('select account from article where article_ID='.$article_ID.' and building_ID='.$building_ID);
 		if($row = $result->fetch_row()){
 			$owner_account = $row[0];
 		}
