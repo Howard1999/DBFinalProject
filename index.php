@@ -49,8 +49,8 @@ body {
 	session_start();
 	//connect to database
 	$servername = "127.0.0.1";
-	$username = "root";
-	$password = "eb87oU7BGKxqxgSR";
+	$username = "";
+	$password = "DB338HKkvRVOZzb";
 	$dbname = "team1";
 	
 	$conn = new mysqli($servername, $username, $password, $dbname);
