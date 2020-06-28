@@ -67,9 +67,10 @@
 			redirect();
 		}
         $query->close();
-       
-        echo '<div style="border-width:6px;border-style:ridge;border-color:#FFAC55;padding:3px;width:30%;" "text-align:center">';
+        echo '<div style="text-align:center">';
+        echo '<div style="border-width:6px;border-style:ridge;border-color:#FFAC55;padding:3px;width:30%;">';
         echo '<h1 id="article_building_title">'.$title.'</h1>';
+        echo '</div>';
         echo '</div>';
         echo '<div style="text-align:center">';	
         echo '<h5 id="create_time">創建時間:'.$create_time.'</h5>';
