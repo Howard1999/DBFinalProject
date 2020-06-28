@@ -29,7 +29,6 @@ body {
 	font-size: 25px;
 	margin: 20px;
 }
-	
 .login table {
 	display: inline-block;
 	width: 90%;
@@ -37,7 +36,6 @@ body {
 .a {
 	width: 70%;
 }
-	
 input[type="text"], input[type="password"] {
 	font-size: 16px;
 	font-family: "微軟正黑體", sans-serif;
@@ -85,8 +83,8 @@ input[type="text"], input[type="password"] {
 	<td class="a"><input type="text" name="account"/></td>
 	</tr>
 	<tr>
-	<td class="a">密碼</td>
-	<td><input type="password" name="password"/></td>
+	<td>密碼</td>
+	<td class="a"><input type="password" name="password"/></td>
 	</tr>
 	</table>
 	<input type ="submit" value="註冊">
@@ -141,4 +139,3 @@ input[type="text"], input[type="password"] {
 
 <a id="main_page_link" href="/DBFinalProject/index.php"><img src="go_index.png" border="0" alt="回到主頁" width="10%" height="10%" style="position:absolute;left:38%;top:70%;"></a>
 <a id="login_page_link" href="/DBFinalProject/login_page.php"><img src="login.png" border="0" alt="登入" width="10%" height="10%" style="position:absolute;left:53%;top:70%;"></a>
-
