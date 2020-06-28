@@ -1,3 +1,21 @@
+<!doctype html>
+<html>
+<style type="text/css">
+<!--set no rolling-->
+body {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	background: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pf-misctexture01-beer-000_5.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=c1552a7bdc2ea7b6e17d8d0d893c15be");
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+}
+
+
+</style>
+<>
 <?php
 	session_start();
 	//connect to database
