@@ -85,12 +85,32 @@
 		$space = '&nbsp;&nbsp;&nbsp;&nbsp';
 		// an article section
 		echo '<section class="article">';
-		echo '<p class="article_header">'.$floor_count.'樓'.$space.'作者: '.$author.$space.'最後編輯: '.$last_edit.$space;
+		// article header
+		echo '<section class="article_header">';
+		echo '<p>'.$floor_count.'樓'.$space.'作者: '.$author.$space.'最後編輯: '.$last_edit.$space;
 		if($account==$user_account)
 			echo '<a class="edit_link" href="/DBFinalProject/edit_page.php?building_ID='.$building_ID.'&article_ID='.$article_ID.'">編輯</a>';
 		echo '</p>';
+		echo '<section class="article_header">';
+		// article content
 		echo '<textarea class="article_content" cols= "60" rows="10" disabled>'.$content.'</textarea>';
+		// like or dislike
+		// comment
+		$result = $conn->query('select user_name,content,post_time from comment natural join user where article_ID='.$article_ID.' order by post_time');
+		echo '<br><select class="comment_box" size=3 style="width:445">';
+			while($comment = $result->fetch_row()){
+				echo '<option>';
+					echo $comment[0].': '.$comment[1];
+				echo '</option>';
+			}
+			echo '</select>';
 		echo '</section>';
+		// input comment
+		echo '<form calss="comment_input" action="leave_comment.php" method="post">';
+			echo '<input type="hidden" name="article_ID" value="'.$article_ID.'">';
+			echo '<input type="text" name="comment" placeholder="留言">';
+			echo '<input type="submit" value="送出">';
+		echo '</form>';
 		$floor_count++;
 	}
 	echo '</section>';

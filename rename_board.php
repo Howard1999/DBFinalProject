@@ -63,4 +63,5 @@
 		header("Location: /DBFinalProject/board_manage.php?err_msg=unknown");
 		die();
 	}
+	$conn->close();
 ?>

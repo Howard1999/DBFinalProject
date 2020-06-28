@@ -1,10 +1,13 @@
 <title>Board Manage</title>
 <h1 align="center">Board Manage</h1>
+
 <form id="board_create_table" action="create_board.php" method="post" align="center">
 	<label for="board_name">create new board :</label>
 	<input type="text" name="board_name" placeholder="board name">
 	<input type="submit" value="create">
 </form>
+
+<!--hidden form-->
 <form id="delete_board_table" action="delete_board.php" method="post">
 	<input type="hidden" id="delete_board_name" name="board_name" value="">
 </form>
@@ -12,6 +15,8 @@
 	<input type="hidden" id="old_board_name" name="old_board_name" value="">
 	<input type="hidden" id="new_board_name" name="new_board_name" value="">
 </form>
+<!--hidden form-->
+
 <table style="width:50%" align="center">
 	<tr><th>board name</th><th>rename</th><th>delete</th>
 <?php
@@ -58,6 +63,7 @@
 			echo '<td align="center"><button onclick="delete_board(\''.$row[0].'\')">delete</button></td>';
 		echo '</tr>';
 	}
+	$conn->close();
 	// alert err_msg
 	if(isset($_GET['err_msg'])){
 		if($_GET['err_msg']=="board_exist"){

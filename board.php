@@ -120,16 +120,16 @@
 	$_SESSION['order_type'] = $order_type;
 
 	$offset = ($page-1)*$article_building_per_page;
-	$stmt = $conn->prepare("select building_ID,title,account,create_time from article_building where board_name=? order by ".$order_key." ".$order_type." limit ? offset ?");
+	$stmt = $conn->prepare("select building_ID,title,user_name,create_time from article_building inner join user using(account) where article_building.board_name=? order by ".$order_key." ".$order_type." limit ? offset ?");
 	$stmt->bind_param("sii",$board,$article_building_per_page,$offset);
 	$stmt->execute();
-	$stmt->bind_result($building_ID,$title,$account,$create_time);
+	$stmt->bind_result($building_ID,$title,$user_name,$create_time);
 	echo '<section id="article_building_list">';
 	while($stmt->fetch()){
 		// an article building section
 		echo '<section class="article_building">';
 		echo '<a class="building_title_link" href="/DBFinalProject/article_building.php?building_ID='.$building_ID.'">'.$title.'</a>';
-		echo '<p class="building_author">作者:'.$account.'</p>';
+		echo '<p class="building_author">作者:'.$user_name.'</p>';
 		echo '<p class="building_create_time">發布時間:'.$create_time.'</p>';
 		echo '</section>';
 	}
