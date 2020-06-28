@@ -17,4 +17,3 @@ create trigger last_edit_time_update before update on article
 		end&&
 
 delimiter ;
---drop trigger login_time_update;

@@ -1,3 +1,4 @@
+create database team1;
 use team1;
 
 create table board(
@@ -72,5 +73,3 @@ create table ban_account(
 	foreign key(account)references user(account)on delete cascade,
 	foreign key(board_name)references board(board_name)on delete cascade on update cascade
 )ENGINE=INNODB;
-
---drop table ban_account, like_dislike, comment, article, article_building, user, board;

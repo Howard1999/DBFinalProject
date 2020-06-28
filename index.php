@@ -63,17 +63,19 @@ body {
 		die("Connection failed: " . $conn->connect_error);
 	}
 	$login = false;
+	echo '<div style="text-align:center">';
 	if(isset($_SESSION['session_id'])){//login check
 		$stmt = $conn->prepare("select user_name from user where session_id = ?");
 		$stmt->bind_param("s",$_SESSION['session_id']);
 		$stmt->execute();
 		$stmt->bind_result($user);
+		
 		if($stmt->fetch())
 		{
 			$stmt->close();
-			echo '<p>hi '.$user.'</p><br><br>';
-			echo '<a id="logout_link" href="/DBFinalProject/logout.php"><input type="button" value="登出" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a><br><br>';
-			echo '<a id="profile_link" href="/DBFinalProject/profile_page.php"><input type="button" value="修改個人資料" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a><br><br>';
+			echo '<h1>hi '.$user.'</h1><br>';
+			echo '<a id="logout_link" href="/DBFinalProject/logout.php"><input type="button" value="登出" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
+			echo '<a id="profile_link" href="/DBFinalProject/profile_page.php"><input type="button" value="個人資料" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 			$login = true;
 			// check authority button
 			$result = $conn->query('select user_name from user where session_id="'.$_SESSION['session_id'].'" and user_authority = "A"');
@@ -81,7 +83,7 @@ body {
 			{
 				$user_name = $row[0];
 				$is_admin = true;
-				echo '<a id="get_board_edit" href="/DBFinalProject/board_manage.php"><input type="button" value="管理版" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a><br><br>';
+				echo '<a id="get_board_edit" href="/DBFinalProject/board_manage.php"><input type="button" value="管理版" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 			}
 			$result->close();
 		}
@@ -89,24 +91,28 @@ body {
 	}
 	if(!$login)
 	{
-		echo '<a id="login_page_link" href="/DBFinalProject/login_page.php"><input type="button" value="登入" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a><br><br>';
-		echo '<a id="register_page_link" href="/DBFinalProject/register_page.php"><input type="button" value="前往註冊" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a><br><br>';
+		echo '<a id="login_page_link" href="/DBFinalProject/login_page.php"><input type="button" value="登入" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
+		echo '<a id="register_page_link" href="/DBFinalProject/register_page.php"><input type="button" value="前往註冊" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 	}
+	echo '<div>';
 	echo '<br>';
 	// genarate board list
 	$result = $conn->query('select board_name,popularity from board order by popularity desc');
 	$num=0;
+	
+	echo '<table style="width:60%" align="center">';
+		echo '<tr>';
 	while($row=$result->fetch_row())
 	{
-		if($num==4)
-		{
+		if($num==3){
 			$num=0;
-			echo '<br><br>';
+			echo '</tr>';
 		}
 		$board_name = $row[0];
 		$popularity = $row[1];
-		echo '<a id="board" href="/DBFinalProject/board.php?board_name='.$board_name.'"><input type="button" value="'.$board_name." 人氣: ".$popularity.'" style="width:420px;height:40px;border:2px #9999FF groove;background-color:#21C592 color:#0C4A5F;"></a>';
-		echo '   ';
+		echo '<td align="center">';
+		echo '<a id="board" href="/DBFinalProject/board.php?board_name='.$board_name.'"><input type="button" value="'.$board_name." 人氣: ".$popularity.'" style="width:350px;height:40px;border:2px #9999FF groove;background-color:#21C592 color:#0C4A5F;"></a>';
+		echo '</td>';
 		$num+=1;
 	}
 	
