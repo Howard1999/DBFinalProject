@@ -20,11 +20,13 @@ body {
 </a><h1 align="center">Board Manage</h1>
 </header>
 
-<form id="board_create_table" action="create_board.php" method="post" align="center">
+<div  align="center">
+<form id="board_create_table" action="create_board.php" method="post">
 	<label for="board_name">create new board :</label>
 	<input type="text" name="board_name" placeholder="board name">
 	<input type="submit" value="create" style="width:120px;height:22px; color:white; background-color:#05143D;">
 </form>
+</div>
 
 <!--hidden form-->
 <form id="delete_board_table" action="delete_board.php" method="post">
