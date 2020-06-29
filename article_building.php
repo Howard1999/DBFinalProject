@@ -1,9 +1,3 @@
-<body>
-<div style="position:relative;">
-        <img class="photo1" src="world.png" alt="" width="100%" height="15%">
-</div>
-</body>
-
 <?php
 	session_start();
 	//connect to database
@@ -44,9 +38,10 @@
 		die();
 	}
 	$query->close();
-	// header
+    // header
+    echo '<div style="text-align:center">';
 	echo '<header id="header">';
-	echo '<a id="main_page_link" href="/DBFinalProject/index.php"><img src="go_index.png" border="0" alt="回到主頁" width="10%" height="10%" style="position:absolute;left:56%;top:3%;"></a>';
+	echo '<a id="main_page_link" href="/DBFinalProject/index.php"><input type="button" value="回到主頁" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 	// check login
 	$login = false;
 	if(isset($_SESSION['session_id'])){
@@ -55,24 +50,25 @@
 			$user_name = $row[0];
 			$user_account = $row[1];
 			$login = true;
-			echo '<a id="logout_page_link" href="/DBFinalProject/logout.php"><img src="logout.png" border="0" alt="登出" width="10%" height="10%" style="position:absolute;left:65.8%;top:3%;"></a>';
-			echo '<a id="reply_link" href="/DBFinalProject/post_page.php?building_ID='.$building_ID.'"><img src="reply.png" border="0" alt="回覆文章" width="10%" height="10%" style="position:absolute;left:75.5%;top:3%;"></a>';
+			echo '<a id="logout_page_link" href="/DBFinalProject/logout.php"><input type="button" value="登出" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
+			echo '<a id="reply_link" href="/DBFinalProject/post_page.php?building_ID='.$building_ID.'"><input type="button" value="回覆文章" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 		}
 		$query->close();
 	}
 	if(!$login){
-		echo '<a id="login_page_link" href="/DBFinalProject/login_page.php"><img src="login.png" border="0" alt="登入" width="10%" height="10%" style="position:absolute;left:65.5%;top:3%;"></a>';
-		echo '<a id="register_page_link" href="/DBFinalProject/register_page.php"><img src="go_register.png" border="0" alt="前往註冊" width="10%" height="10%" style="position:absolute;left:75.5%;top:3%;"></a>';
+		echo '<a id="login_page_link" href="/DBFinalProject/login_page.php"><input type="button" value="登入" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
+		echo '<a id="register_page_link" href="/DBFinalProject/register_page.php"><input type="button" value="前往註冊" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 	}
 	
 	if(isset($_SESSION['last view board'])&&isset($_SESSION['last view page'])&&isset($_SESSION['order_key'])&&isset($_SESSION['order_type'])){
-		echo '<a id="board_link" href="/DBFinalProject/board.php?board_name='.$_SESSION['last view board'].'&page='.$_SESSION['last view page'].'&order_key='.$_SESSION['order_key'].'&order_type='.$_SESSION['order_type'].'"><img src="go_board.png" border="0" alt="回到版上" width="10%" height="10%" style="position:absolute;left:86%;top:3%;"></a>';
+		echo '<a id="board_link" href="/DBFinalProject/board.php?board_name='.$_SESSION['last view board'].'&page='.$_SESSION['last view page'].'&order_key='.$_SESSION['order_key'].'&order_type='.$_SESSION['order_type'].'"><input type="button" value="回到版上" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 	}
 	else{
-		echo '<a id="reply_link" href="/DBFinalProject/board.php?board_name='.$board_name.'"><img src="go_board.png" border="0" alt="回到版上" width="10%" height="10%" style="position:absolute;left:86%;top:3%;"></a>';
-	}
+		echo '<a id="reply_link" href="/DBFinalProject/board.php?board_name='.$board_name.'"><input type="button" value="回到版上" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
+    }
+    echo '</div>';
     //
-    echo '<div style="border-width:6px;border-style:ridge;border-color:#FFAC55;padding:3px;width:30%;" "text-align:center">';
+    echo '<div style="border-width:6px;border-style:ridge;border-color:#FFAC55;padding:3px;width:30%;" style="text-align:center">';
     echo '<h1 id="article_building_title">'.$title.'</h1>';
     echo '</div>';
     echo '<div style="text-align:center">';
