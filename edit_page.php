@@ -1,8 +1,3 @@
-<body>
-<div style="position:relative;">
-        <img class="photo1" src="world.png" alt="" width="100%" height="15%">
-</div>
-</body>
 <?php
 	session_start();
 	//connect to database
@@ -37,13 +32,13 @@
 	// page link
 	echo "<title>編輯</title>";
 	echo '<header id="header">';
-	echo '<a id="main_page_link" href="/DBFinalProject/index.php"><img src="go_index.png" border="0" alt="回到主頁" width="10%" height="10%" style="position:absolute;left:66%;top:3%;"></a>';
+	echo '<a id="main_page_link" href="/DBFinalProject/index.php"><input type="button" value="回到主頁" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 	$login = false;
 	if(isset($_SESSION['session_id'])){//login check
 		$result = $conn->query('select account from user where session_id ="'.$_SESSION['session_id'].'"');
 		if($row = $result->fetch_row()){
 			$account = $row[0];
-			echo '<a id="logout_link" href="/DBFinalProject/logout.php"><img src="logout.png" border="0" alt="登出" width="10%" height="10%" style="position:absolute;left:76%;top:3%;"></a>';
+			echo '<a id="logout_link" href="/DBFinalProject/logout.php"><input type="button" value="登出" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 			$login = true;
 		}
 		$result->close();
@@ -61,21 +56,20 @@
 		if($row = $query->fetch_row()){
 			$title = $row[0];
 			$create_time = $row[1];
-			echo '<a id="board_link" href="/DBFinalProject/article_building.php?building_ID='.$building_ID.'"><img src="cancel.png" border="0" alt="取消" width="10%" height="10%" style="position:absolute;left:86%;top:3%;"></a>';
+			echo '<a id="board_link" href="/DBFinalProject/article_building.php?building_ID='.$building_ID.'"><input type="button" value="取消" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 		}
 		else{
 			redirect();
 		}
         $query->close();
-        echo '<div style="text-align:center">';
-        echo '<div style="border-width:6px;border-style:ridge;border-color:#FFAC55;padding:3px;width:30%;">';
-        echo '<h1 id="article_building_title">'.$title.'</h1>';
-        echo '</div>';
-        echo '</div>';
-        echo '<div style="text-align:center">';	
+		
+		echo '<div align="center">';
+		echo '<div align="center" style="margin:15px;border-width:6px;border-style:ridge;border-color:#FFAC55;padding:3px;width:45%;" >';
+    	echo '<h1 id="article_building_title">'.$title.'</h1>';
         echo '<h5 id="create_time">創建時間:'.$create_time.'</h5>';
-        echo '</div>';
 		echo '</header>';
+		echo '</div>';
+		echo '</div>';
 		// header end
 		
         // check article_ID is exist and is belong user and building
@@ -107,13 +101,13 @@
 		// if is first then can update title
 		if(isset($first_article_ID)&&$first_article_ID==$article_ID){
 			echo '<label id="title_label" class="title" for="title">標題 :</label><br>';
-			echo '<input id="title_input" name="title" type="text" value="'.$title.'"><br>';
+			echo '<input id="title_input" name="title" type="text" value="'.$title.'" style="width:20%;font-size:18px"><br>';
 			echo '<label id="content_label" class="content" for="content">內容 :</label><br>';
 		}
 		else{
 			echo '<label id="content_label" class="content" for="content">回覆 :</label><br>';
 		}
-        echo '<textarea id="content_input" class="content" name="content" cols="60" rows="10">'.$content.'</textarea>';
+        echo '<textarea id="content_input" class="content" name="content" cols="60" rows="10" style="font-size:18px">'.$content.'</textarea>';
         echo '<br>';
 		echo '<input id="submit_button" type="submit" value="更新">';
 	}
@@ -135,6 +129,7 @@ body {
 	background-position: center;
 }
 textarea {
+	font-size:18px;
 	resize:none;
 }
 </style>
