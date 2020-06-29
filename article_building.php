@@ -39,7 +39,7 @@
 	}
 	$query->close();
 	// header
-	echo '<div align="center">';
+	
 	echo '<header id="header">';
 	echo '<a id="main_page_link" href="/DBFinalProject/index.php"><input type="button" value="回到主頁" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 	// check login
@@ -66,13 +66,12 @@
 	else{
 		echo '<a id="reply_link" href="/DBFinalProject/board.php?board_name='.$board_name.'"><input type="button" value="回到版上" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
     }
-    echo '</div>';
-    //
-    echo '<div style="border-width:6px;border-style:ridge;border-color:#FFAC55;padding:3px;width:45%;" "text-align:center">';
+	echo '<div align="center">';
+	echo '<div align="center" style="margin:15px;border-width:6px;border-style:ridge;border-color:#FFAC55;padding:3px;width:45%;" >';
     echo '<h1 id="article_building_title">'.$title.'</h1>';
-    echo '</div>';
     echo '<h5 id="create_time">創建時間:'.$create_time.'</h5>';
 	echo '</header>';
+	echo '</div>';
 	echo '</div>';
 	// header end
 	
