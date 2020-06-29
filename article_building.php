@@ -38,8 +38,8 @@
 		die();
 	}
 	$query->close();
-    // header
-    echo '<div style="text-align:center">';
+	// header
+	echo '<div align="center">';
 	echo '<header id="header">';
 	echo '<a id="main_page_link" href="/DBFinalProject/index.php"><input type="button" value="回到主頁" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 	// check login
@@ -68,18 +68,18 @@
     }
     echo '</div>';
     //
-    echo '<div style="border-width:6px;border-style:ridge;border-color:#FFAC55;padding:3px;width:30%;" style="text-align:center">';
+    echo '<div style="border-width:6px;border-style:ridge;border-color:#FFAC55;padding:3px;width:45%;" "text-align:center">';
     echo '<h1 id="article_building_title">'.$title.'</h1>';
     echo '</div>';
-    echo '<div style="text-align:center">';
     echo '<h5 id="create_time">創建時間:'.$create_time.'</h5>';
-    echo '</div>';
 	echo '</header>';
+	echo '</div>';
 	// header end
 	
 	// show article
 	$floor_count = 1;
 	$query = $conn->query('select user.account,content,last_edit_time,user_name,article_ID from article natural join user where building_ID='.$building_ID.' order by article_ID');
+	echo '<div align="center">';
 	echo '<section id="article_list">';
 	while($row = $query->fetch_row()){
 		$account = $row[0];
@@ -91,7 +91,7 @@
 		// an article section
         echo '<section class="article">';
 
-        echo '<div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;width:50%;" "text-align:center">';
+        echo '<div style="margin:5px;border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;width:50%;" "text-align:center">';
         echo '<div style="text-align:center">';
 		echo '<p class="article_header">'.$floor_count.'樓'.$space.'作者: '.$author.$space.'最後編輯: '.$last_edit.$space;
 		if($account==$user_account)
@@ -118,16 +118,15 @@
 				//echo '<a href="/DBFinalProject/dislike.php?article_ID='.$article_ID.'"><img src="噓.png" border="0" alt="噓" width="5%" height="5%" style="position:absolute;left:12%;top:42%;"></a>';
 			echo '</p>';
         echo '</section>';
-        echo '</div>';
-        echo '</div>';
+        
 		// article content
-		echo '<textarea class="article_content" cols= "60" rows="10" disabled>'.$content.'</textarea>';
+		echo '<textarea class="article_content" style="width:90%;height:30%;" disabled>'.$content.'</textarea>';
 		// comment
 		$result = $conn->query('select user_name,content,post_time from comment natural join user where article_ID='.$article_ID.' order by post_time');
-		echo '<br><select class="comment_box" size=3 style="width:445">';
+		echo '<br><select class="comment_box" size=4 style="width:70%">';
 			while($comment = $result->fetch_row()){
 				echo '<option>';
-					echo $comment[0].': '.$comment[1];
+					echo $comment[0].': '.$comment[1].' -- '.$comment[2];
 				echo '</option>';
 			}
 			echo '</select>';
@@ -138,9 +137,12 @@
 			echo '<input type="text" name="comment" placeholder="留言">';
 			echo '<input type="submit" value="送出">';
 		echo '</form>';
+		echo '</div>';
+        echo '</div>';
 		$floor_count++;
 	}
 	echo '</section>';
+	echo '</div>';
 	$query->close();
 
     $conn->close();

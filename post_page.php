@@ -1,7 +1,6 @@
 <!doctype html>
 <html>
 <style type="text/css">
-<!--set no rolling-->
 body {
 	width: 100%;
 	height: 100%;
@@ -12,8 +11,6 @@ body {
 	background-attachment: fixed;
 	background-position: center;
 }
-
-
 </style>
 <body>
 <?php
@@ -95,7 +92,7 @@ body {
 		echo '<form id="post_area" action="post.php" method="post">';
 		echo '<input name="board_name" type="hidden" value="'.$_GET['board_name'].'">';
 		echo '<label id="title_label" class="title" for="title">標題 :</label><br>';
-		echo '<input id="title_input" class="title" type="text" name="title"><br>';
+		echo '<input id="title_input" class="title" type="text" name="title" style="width:20%"><br>';
 		echo '<label id="content_label" class="content" for="content">內容 :</label><br>';
 	}
 	else if(isset($_GET['building_ID'])){
@@ -127,7 +124,7 @@ body {
 	}
 	$conn->close;
 ?>
-<textarea id="content_input" class="content" name="content" cols="60" rows="10" style="background-color:#E4E5E2;"></textarea>
+<textarea id="content_input" class="content" name="content" rows="15" style="background-color:#E4E5E2;width:40%;height:45%;"></textarea>
 <br>
 <input id="submit_button" type="submit" value="發布" style="width:120px;height:40px; color:white; background-color:#05143D;">
 </form>
