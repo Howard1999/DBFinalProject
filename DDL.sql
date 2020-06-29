@@ -11,7 +11,7 @@ create table user(
 	user_name varchar(20)not null unique,
 	account varchar(20)not null,
 	password varchar(20)not null,
-	user_authority char(1)not null check(level in ("A","B","C")),
+	user_authority char(1)not null check(user_authority in ("A","B","C")),
 	login_time datetime,
 	last_login_time datetime,
 	board_name varchar(20)default null,
