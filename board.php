@@ -221,7 +221,7 @@ body{font-family: arial,"Microsoft JhengHei","微軟正黑體",sans-serif !impor
 		}
 		echo '</section>';
 	}
-	echo '</	div>';
+	echo '</div>';
 	$conn->close();
 ?>
 <style>
