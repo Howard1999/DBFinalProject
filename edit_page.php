@@ -100,16 +100,16 @@
 		echo '<input name="article_ID" type="hidden" value="'.$_GET['article_ID'].'">';
 		// if is first then can update title
 		if(isset($first_article_ID)&&$first_article_ID==$article_ID){
-			echo '<label id="title_label" class="title" for="title">標題 :</label><br>';
+			echo '<label id="title_label" class="title" for="title">標題</label><br>';
 			echo '<input id="title_input" name="title" type="text" value="'.$title.'" style="width:20%;font-size:18px"><br>';
-			echo '<label id="content_label" class="content" for="content">內容 :</label><br>';
+			echo '<label id="content_label" class="content" for="content">內容</label><br>';
 		}
 		else{
-			echo '<label id="content_label" class="content" for="content">回覆 :</label><br>';
+			echo '<label id="content_label" class="content" for="content">回覆</label><br>';
 		}
-        echo '<textarea id="content_input" class="content" name="content" cols="60" rows="10" style="font-size:18px">'.$content.'</textarea>';
+		echo '<textarea id="content_input" class="content" name="content" rows="10" style="font-size:18px;width:40%;background-color:#E4E5E2;">'.$content.'</textarea>';
         echo '<br>';
-		echo '<input id="submit_button" type="submit" value="更新">';
+		echo '<input id="submit_button" type="submit" value="發布" style="width:120px;height:40px; color:white; background-color:#05143D;">';
 	}
 	else{
 		redirect();

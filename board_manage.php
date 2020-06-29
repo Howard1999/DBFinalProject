@@ -23,7 +23,7 @@ body {
 <form id="board_create_table" action="create_board.php" method="post" align="center">
 	<label for="board_name">create new board :</label>
 	<input type="text" name="board_name" placeholder="board name">
-	<input type="submit" value="create" style="width:120px;height:35px; color:white; background-color:#05143D; font-size:18px ;">
+	<input type="submit" value="create" style="width:120px;height:22px; color:white; background-color:#05143D;">
 </form>
 
 <!--hidden form-->
@@ -78,9 +78,9 @@ body {
 			echo '<td align="center">'.$row[0].'</td>';
 			echo '<td align="center">';
 			echo '<input type="text" name="new_board_name" placeholder="new board name" id="new_'.$row[0].'">';
-			echo '<button onclick="rename_board(\''.$row[0].'\')" style="width:120px;height:35px; color:white; background-color:#05143D;font-size:18px;">rename</button>';
+			echo '<button onclick="rename_board(\''.$row[0].'\')" style="width:120px;height:22px; color:white; background-color:#05143D;;">rename</button>';
 			echo '</td>';
-			echo '<td align="center"><button onclick="delete_board(\''.$row[0].'\')" style="width:120px;height:35px; color:white; background-color:#05143D; font-size:18px ;">delete</button></td>';
+			echo '<td align="center"><button onclick="delete_board(\''.$row[0].'\')" style="width:120px;height:22px; color:white; background-color:#05143D; ">delete</button></td>';
 		echo '</tr>';
 	}
 	$conn->close();

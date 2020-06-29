@@ -124,7 +124,7 @@ body {
 	}
 	$conn->close;
 ?>
-<textarea id="content_input" class="content" name="content" rows="10" style="font-size:18px;width:40%;height:45%;background-color:#E4E5E2;"></textarea>
+<textarea id="content_input" class="content" name="content" rows="10" style="font-size:18px;width:40%;background-color:#E4E5E2;"></textarea>
 <br>
 <input id="submit_button" type="submit" value="發布" style="width:120px;height:40px; color:white; background-color:#05143D;">
 </form>
