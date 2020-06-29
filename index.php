@@ -106,7 +106,7 @@ body {
 		}
 		$board_name = $row[0];
 		$popularity = $row[1];
-		echo '<td align="center">';
+		echo '<td align="center" style="width:33%;">';
 		echo '<a id="board" href="/DBFinalProject/board.php?board_name='.$board_name.'"><input type="button" value="'.$board_name." 人氣: ".$popularity.'" style="width:100%;height:40px;border:2px #9999FF groove;background-color:#21C592 color:#0C4A5F;"></a>';
 		echo '</td>';
 		$num+=1;
