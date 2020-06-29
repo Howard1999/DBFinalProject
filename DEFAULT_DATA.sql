@@ -1,5 +1,3 @@
-use team2;
-
 insert into board values("場外休憩版",0);
 insert into board values("被刪掉的版",0);
 insert into board values("沒被刪掉的版",0);
