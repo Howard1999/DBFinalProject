@@ -76,7 +76,7 @@ body{font-family: arial,"Microsoft JhengHei","微軟正黑體",sans-serif !impor
 		echo '<tr>';
 			echo '<td align="center">使用者名稱</td>';
 			echo '<td align="center"><input id=user_name type="text" value="'.$row[0].'" align="center"></td>';
-			echo '<td><button onclick="rename()" style="width:120px;height:40px; color:white; background-color:#05143D;">rename</button></td>';
+			echo '<td><button onclick="rename()" style="width:120px;height:22px; color:white; background-color:#05143D;">rename</button></td>';
 		echo '</tr>';
 		
 		echo '<tr>';

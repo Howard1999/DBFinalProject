@@ -179,8 +179,8 @@ body{font-family: arial,"Microsoft JhengHei","微軟正黑體",sans-serif !impor
 	while($stmt->fetch()){
 		// an article building section
 		echo '<div align="center">';
-		echo '<section class="article_building"  style="background-color:gray;width:700px;border:10px;">';
-		echo '<a class="building_title_link" href="/DBFinalProject/article_building.php?building_ID='.$building_ID.'"><input type="button" value="'.$title.'" style="width:400px;height:40px; color:#CEA107; background-color:#05143D;"><br></a>';
+		echo '<section class="article_building"  style="background-color:gray;width:50%;height:25%;padding:5px;margin:10px;">';
+		echo '<a class="building_title_link" href="/DBFinalProject/article_building.php?building_ID='.$building_ID.'"><input type="button" value="'.$title.'" style="width:50%;height:40px; color:#CEA107; background-color:#05143D;"><br></a>';
 		echo '<p class="building_author">作者:'.$user_name.'</p>';
 		echo '<p class="building_create_time">發布時間:'.$create_time.'</p>';
 		echo '</section>';
@@ -191,7 +191,7 @@ body{font-family: arial,"Microsoft JhengHei","微軟正黑體",sans-serif !impor
 	echo '<div align="center">';
 	// if there are no any page then show a post link
 	if($total_page==0){
-		echo '<a id="no_article_prompt" href="/DBFinalProject/post_page.php?board_name='.$board.'"><input type="button" value="這裡還沒有任何文章..發佈第一篇" style="width:400px;height:40px; color:#CEA107; background-color:#05143D;"><br></a>';
+		echo '<a id="no_article_prompt" href="/DBFinalProject/post_page.php?board_name='.$board.'"><input type="button" value="這裡還沒有任何文章..發佈第一篇" style="width:50%;height:40px;color:#CEA107;background-color:#05143D;"><br></a>';
 	}//other wise give user previous, next page link and show where is the page now
 	else{
 		echo '<section id="page_footer">';

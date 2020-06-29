@@ -91,9 +91,9 @@ body {
 		echo '<title>發文</title>';
 		echo '<form id="post_area" action="post.php" method="post">';
 		echo '<input name="board_name" type="hidden" value="'.$_GET['board_name'].'">';
-		echo '<label id="title_label" class="title" for="title">標題 :</label><br>';
-		echo '<input id="title_input" class="title" type="text" name="title" style="width:20%"><br>';
-		echo '<label id="content_label" class="content" for="content">內容 :</label><br>';
+		echo '<label id="title_label" class="title" for="title">標題</label><br>';
+		echo '<input id="title_input" class="title" type="text" name="title" style="width:20%;font-size:18px"><br>';
+		echo '<label id="content_label" class="content" for="content">內容</label><br>';
 	}
 	else if(isset($_GET['building_ID'])){
 		
@@ -120,11 +120,11 @@ body {
 		echo '<title>回覆</title>';
 		echo '<form id="post_area" action="post.php" method="post">';
 		echo '<input name="building_ID" type="hidden" value="'.$_GET['building_ID'].'">';
-		echo '<label id="content_label" class="content" for="content">回覆 :</label><br>';
+		echo '<label id="content_label" class="content" for="content">回覆</label><br>';
 	}
 	$conn->close;
 ?>
-<textarea id="content_input" class="content" name="content" rows="15" style="background-color:#E4E5E2;width:40%;height:45%;"></textarea>
+<textarea id="content_input" class="content" name="content" rows="10" style="font-size:18px;width:40%;height:45%;background-color:#E4E5E2;"></textarea>
 <br>
 <input id="submit_button" type="submit" value="發布" style="width:120px;height:40px; color:white; background-color:#05143D;">
 </form>

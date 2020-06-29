@@ -119,7 +119,7 @@
         echo '</section>';
         
 		// article content
-		echo '<textarea class="article_content" style="width:90%;height:30%;" disabled>'.$content.'</textarea>';
+		echo '<textarea class="article_content" style="width:90%;height:30%;font-size:18px" disabled>'.$content.'</textarea>';
 		// comment
 		$result = $conn->query('select user_name,content,post_time from comment natural join user where article_ID='.$article_ID.' order by post_time');
 		echo '<br><select class="comment_box" size=4 style="width:70%">';
