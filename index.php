@@ -31,12 +31,6 @@ body {
 #get_board_edit{
 	display:inline-block;
 }
-#board{
-	display:inline-block;
-	width:420px;
-	height:20px;
-	margin: 2em;
-}
 
 </style>
 <body>
@@ -94,13 +88,12 @@ body {
 		echo '<a id="login_page_link" href="/DBFinalProject/login_page.php"><input type="button" value="登入" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 		echo '<a id="register_page_link" href="/DBFinalProject/register_page.php"><input type="button" value="前往註冊" style="width:120px;height:40px;border:2px #9999FF dashed;background-color:pink;"></a>';
 	}
-	echo '<div>';
+	echo '</div>';
 	echo '<br>';
 	// genarate board list
 	$result = $conn->query('select board_name,popularity from board order by popularity desc');
 	$num=0;
-	
-	echo '<table style="width:60%" align="center">';
+	echo '<table style="width:80%;" align="center">';
 		echo '<tr>';
 	while($row=$result->fetch_row())
 	{
@@ -111,11 +104,11 @@ body {
 		$board_name = $row[0];
 		$popularity = $row[1];
 		echo '<td align="center">';
-		echo '<a id="board" href="/DBFinalProject/board.php?board_name='.$board_name.'"><input type="button" value="'.$board_name." 人氣: ".$popularity.'" style="width:350px;height:40px;border:2px #9999FF groove;background-color:#21C592 color:#0C4A5F;"></a>';
+		echo '<a id="board" href="/DBFinalProject/board.php?board_name='.$board_name.'"><input type="button" value="'.$board_name." 人氣: ".$popularity.'" style="width:100%;height:40px;border:2px #9999FF groove;background-color:#21C592 color:#0C4A5F;"></a>';
 		echo '</td>';
 		$num+=1;
 	}
-	
+	echo '</table>';
 	$conn->close();
 ?>
 </pre>
