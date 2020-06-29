@@ -1,5 +1,8 @@
 <!doctype html>
 <html>
+<head>
+	<title>鄉民的世界</title>
+</head>
 <style type="text/css">
 <!--set no rolling-->
 #main {
